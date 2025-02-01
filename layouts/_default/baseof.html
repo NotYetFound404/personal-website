@@ -4,7 +4,16 @@
     {{ partial "meta.html" . }}
 </head>
 <body>
-    {{ partial "nav.html" }}
+    {{ partial "nav.html"}}
+    <!-- <nav>
+        <ul>
+            <li> <a href="{{.Site.BaseURL}}"> Home </a> </li>
+            <li> <a href="{{.Site.BaseURL}}/about/"> About </a> </li>
+        </ul>
+    </nav> -->
+    
+    
+    
     {{ block "main" .}}
     {{ end }}
 </body>
