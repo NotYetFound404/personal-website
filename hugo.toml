@@ -1,3 +1,6 @@
 baseURL = 'https://notyetfound404.github.io/personal-website/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+
+[params]
+name = 'Cesar Garcia'

@@ -1,5 +1,6 @@
 ---
 title: About
+hide_footer: false
 ---
 
 // WIP //

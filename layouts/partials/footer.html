@@ -1,0 +1,9 @@
+{{ with .Params.hide_footer }}
+ <!-- No footer here! -->
+{{ else }}
+ <footer>
+    Copyright © {{ now.Year }} | {{ .Site.Params.name }} | All rights reserved
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+{{ end }}
