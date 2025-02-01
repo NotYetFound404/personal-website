@@ -20,7 +20,7 @@ I'm a final-year finance student passionate about **quantitative finance, coding
 ## 📢 Connect With Me  
 Feel free to check out my work and reach out!  
 
-🔗 [LinkedIn](https://www.linkedin.com/in/cesar-garciaa/) | 📧 [Email](cr.garciaa@alum.up.edu.pe)  
+🔗 [LinkedIn](https://www.linkedin.com/in/cesar-garciaa/) | 📧 [Email](mailto:cr.garciaa@alum.up.edu.pe)  
 
 ---  
 📌 _Stay tuned for more updates as I continue to build and learn!_  
