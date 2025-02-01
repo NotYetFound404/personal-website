@@ -7,5 +7,12 @@
     <generator>Hugo</generator>
     <language>en-us</language>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>About</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/about/</guid>
+      <description>&lt;p&gt;// WIP //&lt;/p&gt;&#xA;&lt;p&gt;This is the about page for my personal website.&lt;/p&gt;&#xA;&lt;p&gt;// WIP//&lt;/p&gt;&#xA;&lt;h1 id=&#34;who-am-i&#34;&gt;&lt;strong&gt;Who am I?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Hi! I&amp;rsquo;m Cesar Garcia, a final-year finance student interning at Moody&amp;rsquo;s Local PE. In my spare time, I enjoy reading, learning new &lt;em&gt;things™&lt;/em&gt;, and understanding different perspectives. Currently, I&amp;rsquo;m focused on coding and preparing for the CFA and FRM.&lt;/p&gt;&#xA;&lt;h1 id=&#34;what-have-i-done&#34;&gt;&lt;strong&gt;What have I done?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Succintly: thought, explored, learned, and adapted.&lt;/p&gt;&#xA;&lt;h1 id=&#34;how-can-i-help-you&#34;&gt;&lt;strong&gt;How can I help you?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;My experience has helped me develop skills to tackle issues related credit risk, data analysis, and corporate finance. Being at an early stage in my career, however, I&amp;rsquo;m still learning.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

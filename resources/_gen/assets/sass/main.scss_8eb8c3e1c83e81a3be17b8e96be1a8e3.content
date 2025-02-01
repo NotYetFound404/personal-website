@@ -1,0 +1,1 @@
+body{width:400px;margin:0 auto;font-family:sans-serif}nav ul{list-style:none;padding:3px 5px;background:#111}nav ul a{color:#fff;text-decoration:none}nav ul a:hover{text-decoration:underline}nav ul li{display:inline}footer{background:#f2f2f2;padding:2px;font-size:.7em;text-align:center}#map{height:300px}h1{color:#23c87b}
