@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Page.Title}}</title>
-    {{ $styles := resources.Get "sass/main.scss" | css.Sass | resources.Minify }}
-    <link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
-
+    {{ partial "meta.html" . }}
 </head>
 <body>
+    {{ partial "nav.html" }}
     {{ block "main" .}}
     {{ end }}
 </body>
