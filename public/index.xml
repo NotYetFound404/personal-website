@@ -9,11 +9,11 @@
     <lastBuildDate>Sat, 01 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/personal-website/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>How I built this website</title>
+      <title>How I built this website (v.1.0.1)</title>
       <link>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</link>
       <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
       <guid>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</guid>
-      <description>&lt;p&gt;Up next,&#xA;Im going to include all the documentation on how I built this site:&lt;/p&gt;</description>
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;I’m building my minium-viable-product personal website A.K.A v.1.0.1 using &lt;strong&gt;Hugo&lt;/strong&gt; from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://sive.rs/&#34;&gt;Derek Sivers’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jaredwhite.com/&#34;&gt;Jared White’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://lukesmith.xyz/&#34;&gt;Luke Smith’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;What resonated with me from these websites is that they are all direct and distraction-free, emphasizing on the content which is big plus!&lt;/p&gt;&#xA;&lt;p&gt;In the future (v2.0.1), I plan to incorporate elements of &lt;strong&gt;Swiss Design&lt;/strong&gt; for a clean, modern aesthetic. And design a more seamless Obsidian to Hugo integration as per NetworkChuck &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;YT Video&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Second Post</title>

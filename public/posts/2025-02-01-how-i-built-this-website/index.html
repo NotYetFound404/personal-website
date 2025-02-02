@@ -3,7 +3,7 @@
 <head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How I built this website</title>
+<title>How I built this website (v.1.0.1)</title>
 
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
@@ -19,10 +19,287 @@
 
     
     
-    <h1> How I built this website </h1>
+    <h1> How I built this website (v.1.0.1) </h1>
     <p>  February 1, 2025 </p>
-    <p>Up next,
-Im going to include all the documentation on how I built this site:</p>
+    <h1 id="introduction">Introduction</h1>
+<p>I’m building my minium-viable-product personal website A.K.A v.1.0.1 using <strong>Hugo</strong> from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:</p>
+<ul>
+<li><a href="https://sive.rs/">Derek Sivers’s site</a></li>
+<li><a href="https://jaredwhite.com/">Jared White’s site</a></li>
+<li><a href="https://lukesmith.xyz/">Luke Smith’s site</a></li>
+</ul>
+<p>What resonated with me from these websites is that they are all direct and distraction-free, emphasizing on the content which is big plus!</p>
+<p>In the future (v2.0.1), I plan to incorporate elements of <strong>Swiss Design</strong> for a clean, modern aesthetic. And design a more seamless Obsidian to Hugo integration as per NetworkChuck <a href="https://www.youtube.com/watch?v=dnE7c0ELEH8">YT Video</a>.</p>
+<p>After distilling and organizing my original notes, this walkthrough follows the <a href="https://gohugo.io/getting-started/quick-start/">official Hugo documentation</a> and Cloud&rsquo;s Cannon, not sponsored, <a href="https://www.youtube.com/watch?v=SVvihs0WfhQ&amp;list=PLrxYIq_0LFJfimciGTP5bQhYSEu5EdAuA">begginer tutorial series</a>. Let’s get started!</p>
+<hr>
+<h1 id="1-prerequisites-section---basic-software">1. Prerequisites Section - Basic Software</h1>
+<p>Before using Hugo, ensure you have the following tools installed:</p>
+<ol>
+<li><strong>Git</strong>: Follow the <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">installation guide</a>.</li>
+<li><strong>Go</strong>: Verify the installation with <code>go version</code>. Try a simple [[# Hello World in Go]] program to test it:</li>
+<li><strong>Dart Sass</strong>: Install via Chocolatey. You need to have chocolatey installed, checkout my [[#Chocolatey Instalation Guide]]</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>choco install sass        
+</span></span></code></pre></div><ol start="4">
+<li>Hugo: Install hugo via chocolatey. And if you have issues with not seing Hugo inside VS Code add the hugo.exe path to the environment variables. You can always check if its downloaded correctly running <code>hugo version</code> in the terminal</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>choco install hugo-extended
+</span></span></code></pre></div><p>I think it is good practice to use a file versioning system, by that I mean git &amp; gitbhub. You can follow my brief guide for begginers on [[#File versioning made easy]]</p>
+<hr>
+<h1 id="2-building-the-website">2. Building the Website</h1>
+<h2 id="21-initial-setup">2.1 Initial Setup</h2>
+<ol>
+<li>Create a new repository on GitHub (e.g., <code>personal-website</code>).</li>
+<li>Clone the repo locally:</li>
+<li>Create a new Hugo site with the CLI tool (you need to CD into the parent&rsquo;s dir):</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo new site personal-website    
+</span></span></code></pre></div><ol start="4">
+<li>Start the Hugo server. As no theme is used, this is expected to be broken. Don&rsquo;t worry about it</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo server    
+</span></span></code></pre></div><h2 id="22-adding-content">2.2 Adding Content</h2>
+<h3 id="build-the-home-page">Build the home page</h3>
+<ol>
+<li>In a new file &lsquo;content/_index.html&rsquo;, create the home page:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: Home
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>Hello World! This is my first page. 🔝
+</span></span></code></pre></div><ol start="2">
+<li>In a new file &rsquo;layouts/_default/list.html&rsquo;, create the needed layouts</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;{{ .Page.Title}}&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ .Content }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><ol start="3">
+<li>Render the page</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo serve
+</span></span></code></pre></div><h3 id="add-an-about-section">Add an about section</h3>
+<ol>
+<li>In a new file &lsquo;content/about.html&rsquo;, create the about page:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: About
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>Imagine this is a Lorem Ipsum
+</span></span></code></pre></div><ol start="2">
+<li>Refactor the layouts</li>
+</ol>
+<ul>
+<li>Now &rsquo;layouts/_default/baseof.html&rsquo; is:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;{{ .Page.Title}}&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ block &#34;main&#34; .}}
+</span></span><span style="display:flex;"><span>    {{ end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><ul>
+<li>Now &rsquo;layouts/_default/list.html&rsquo; is:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ define &#34;main&#34;}}
+</span></span><span style="display:flex;"><span>    {{ .Content}}
+</span></span><span style="display:flex;"><span>{{ end}}
+</span></span></code></pre></div><ul>
+<li>This has defined a &lsquo;main block&rsquo; where we are passing the context &lsquo;.&rsquo;</li>
+<li>I understand that Hugo renders both the Home and About .md files with the baseof layou that then calls the main content frmom the list.html base layout. That is, it renders (? translates the .md to the index.html for each page, you can audit this in the public directory) the text below the YAML in each .md file</li>
+</ul>
+<ol start="3">
+<li>Write some awesome styles (Imagine this css is more impresive)</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-scss" data-lang="scss"><span style="display:flex;"><span><span style="color:#f92672">body</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">400</span><span style="color:#66d9ef">px</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">margin</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span> auto;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">font-family</span><span style="color:#f92672">:</span> sans-serif;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><ol start="4">
+<li>Add the newly writen styles globaly to all the webpages (as all pages use first the base layout they&rsquo;ll inherit this unless otherwise specified?)</li>
+</ol>
+<ul>
+<li>Now &rsquo;layouts/_default/baseof.html&rsquo; is:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span> <span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;{{ .Page.Title}}&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ $styles := resources.Get &#34;sass/main.scss&#34; | css.Sass | minify }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $styles.Permalink }}&#34;</span> <span style="color:#a6e22e">media</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;screen&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ block &#34;main&#34; .}}
+</span></span><span style="display:flex;"><span>    {{ end }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><ul>
+<li>For more detail check Asset Management ( <a href="https://gohugo.io/hugo-pipes/introduction/">Go Pipes</a> ). Hugo recomends:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ $style := resources.Get &#34;sass/main.scss&#34; | css.Sass | resources.Minify | resources.Fingerprint }} &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $style.Permalink }}&#34;</span>&gt;
+</span></span></code></pre></div><h3 id="add-a-navbar-and-footer">Add a navbar and footer</h3>
+<p>This uses Hugo partials. The following part asumes you have already deployed with github pages</p>
+<ol>
+<li>Modify the hugo.toml to include your page&rsquo;s url</li>
+</ol>
+<ul>
+<li>Modificar el base URL</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#a6e22e">baseURL</span> = <span style="color:#e6db74">&#39;https://notyetfound404.github.io/personal-website/&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">languageCode</span> = <span style="color:#e6db74">&#39;en-us&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span> = <span style="color:#e6db74">&#39;My New Hugo Site&#39;</span>
+</span></span></code></pre></div><ol start="2">
+<li>Create &rsquo;layouts/partials&rsquo; and &rsquo;layouts/partials/nav.html&rsquo;. Note that we are using absURL, this calls upon the baseURL modified in the previous step</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt; &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span> <span style="color:#e6db74">{{</span> <span style="color:#a6e22e">absURL</span> <span style="color:#960050;background-color:#1e0010">&#34;&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span> &gt; Home &lt;/<span style="color:#f92672">a</span>&gt; &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt; &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span> <span style="color:#e6db74">{{</span> <span style="color:#a6e22e">absURL</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">about</span><span style="color:#960050;background-color:#1e0010">/&#34;</span> <span style="color:#960050;background-color:#1e0010">}}</span>&gt; About &lt;/<span style="color:#f92672">a</span>&gt; &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span></code></pre></div><ol start="3">
+<li>Create a partial (named meta for convenience) to clean the sass import. Now &rsquo;layouts/partials/meta.html&rsquo; is:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">title</span>&gt;{{ .Page.Title}}&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>{{ $styles := resources.Get &#34;sass/main.scss&#34; | css.Sass | resources.Minify }}
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ $styles.Permalink }}&#34;</span> <span style="color:#a6e22e">media</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;screen&#34;</span>&gt;
+</span></span></code></pre></div><ol start="4">
+<li>Create a simple footer inside partials. Now &rsquo;layouts/partials/footer.html&rsquo; is:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ with .Params.hide_footer }}
+</span></span><span style="display:flex;"><span> <span style="color:#75715e">&lt;!-- No footer here! --&gt;</span>
+</span></span><span style="display:flex;"><span>{{ else }}
+</span></span><span style="display:flex;"><span> &lt;<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>    Copyright © {{ now.Year }} | {{ .Site.Params.name }} | All rights reserved
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">br</span>&gt;
+</span></span><span style="display:flex;"><span>    Powered by &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://gohugo.io/&#34;</span>&gt;Hugo&lt;/<span style="color:#f92672">a</span>&gt;
+</span></span><span style="display:flex;"><span> &lt;/<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><p>The use of <code>.Params.hide_footer</code> calls upon the yaml defined <code>hide_footer</code> parameter
+5. Include the meta, navbar and footer in the base layouts. Now &rsquo;layouts/_default/baseof.html&rsquo; is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ partial &#34;meta.html&#34; . }}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ partial &#34;nav.html&#34;}}    
+</span></span><span style="display:flex;"><span>    {{ block &#34;main&#34; .}}
+</span></span><span style="display:flex;"><span>    {{ end }}
+</span></span><span style="display:flex;"><span>    {{ partial &#34;footer.html&#34; .}}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><h3 id="setup-hugo-with-blogging-capabilities">Setup Hugo with blogging capabilities</h3>
+<ol>
+<li><strong>Create a new folder</strong> <code>content/posts/</code> to store all blog posts.</li>
+<li><strong>Create</strong> <code>_index.md</code> inside the <code>posts/</code> folder.</li>
+<li><strong>Set up a layout for blog posts:</strong>
+<ul>
+<li>Create <code>layouts/posts/</code> (same name as step 1).</li>
+</ul>
+</li>
+<li><strong>Create <code>layouts/posts/list.html</code></strong>, the default layout used by <code>_index.md</code>:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ define &#34;main&#34; }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;My Posts&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ range .Page}}
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{{ .Permalink }}&#34;</span>&gt; {{ .Title }} &lt;/<span style="color:#f92672">a</span>&gt; - {{ .Date.Format &#34;January 2, 2006&#34;}}
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><ol start="5">
+<li><strong>Create <code>single.html</code></strong>, the layout for individual blog posts:</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>{{ define &#34;main&#34; }}
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;{{ .Params.Title }}&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;{{ .Date.Format &#34;January 2, 2006&#34; }}&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    {{ .Content }}
+</span></span><span style="display:flex;"><span>{{ end }}
+</span></span></code></pre></div><ol start="6">
+<li><strong>Create a new post!</strong> Don&rsquo;t forget the front matter (YAML metadata) required in step 5.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>title: I Like to Roar
+</span></span><span style="display:flex;"><span>date: 2022-04-03
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Up next,  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>I&#39;m going to include all the documentation on how I built this site:
+</span></span></code></pre></div><ol start="7">
+<li><strong>Clean the site before deployment:</strong></li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>hugo --cleanDestinationDir --minify
+</span></span></code></pre></div><h2 id="23-publish-with-github-pages">2.3 Publish with Github Pages</h2>
+<p>Follow <a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">along</a></p>
+<ol>
+<li>Visit your GitHub repository. From the main menu choose <strong>Settings</strong> &gt; <strong>Pages</strong>. &gt; deploy from a branch changed to github actions</li>
+<li>Create a file named <code>hugo.yaml</code> in a directory named <code>.github/workflows</code>. and add the sample config</li>
+<li>Commit and push the new hugo config</li>
+</ol>
+<h1 id="other--miscelaneous">Other / Miscelaneous</h1>
+<h2 id="file-versioning-made-easy">File versioning made easy</h2>
+<p>If you&rsquo;ve never made a Github repo and don&rsquo;t care to learn about git commands, but want to have an organized codebase. You are likely a beginner, like me.</p>
+<p>I will briefly explain how to setup a basic Github Repo and how to connect to it with VS code and make changes (A.K.A commits). I would still highly recomend you look into the <a href="https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories">oficial docs</a> (As the Arch Linux community would say, READ THE DOCS!!). Also, it is good practice being familiar with the <a href="https://www.softwaretestinghelp.com/windows-cmd-commands/">terminal</a> and learning some basic <a href="https://git-scm.com/docs/git">git</a> commands.</p>
+<p>This is by no means and exhaustive guide. I&rsquo;m assuming you already have installed Git, have created a Github Accoun (try to secure it with <a href="https://www.microsoft.com/en-ie/security/business/security-101/what-is-two-factor-authentication-2fa#:~:text=Two%2Dfactor%20authentication%20(2FA),most%20vulnerable%20information%20and%20networks.">2FA</a>), and setup your Git&rsquo;s <a href="https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup">mail and name</a>.</p>
+<h3 id="a-initial-github-setup">A. Initial GitHub Setup</h3>
+<ol>
+<li>Create a new github repo</li>
+<li>Copy the URL
+![[20250131074948.png]]</li>
+</ol>
+<h3 id="b-local-machine">B. Local Machine</h3>
+<ol>
+<li>Open VS Code</li>
+<li>CD into your Desktop</li>
+<li>In VS code&rsquo;s start page you&rsquo;ll see the following
+![[20250131080612.png]]</li>
+<li>Clone Git Repo &gt; Paste the URL</li>
+<li>When you are done. Go to VS Code left tab, then source control, find the commit and add some text and add the changes to your repo!</li>
+<li>By now, the changes you have made should be displayed in your Github&rsquo;s online repo. Check if they are by opening the repo on your preferred search engine.</li>
+</ol>
+<hr>
+<h2 id="hello-world-in-go">Hello World in Go</h2>
+<p>This is the explanation of  Programing Journey project <a href="https://github.com/NotYetFound404/programming-journey/tree/main/31.01.2025">31.01.2025</a> code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><ul>
+<li>You can run it with:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>go run hello_world.go
+</span></span></code></pre></div><ul>
+<li>Don&rsquo;t forget to comit the changes to the repo!</li>
+</ul>
+<h2 id="chocolatey-instalation-guide">Chocolatey Instalation Guide</h2>
+<p>Follows Chocolatey <a href="https://community.chocolatey.org/courses/installation/installing?method=installing-chocolatey#powershell">install</a></p>
+<ul>
+<li>In the powershell do the following</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-PowerShell" data-lang="PowerShell"><span style="display:flex;"><span>Set-ExecutionPolicy Bypass -Scope <span style="color:#66d9ef">Process</span> -Force; iex ((New-Object System.Net.WebClient).DownloadString(<span style="color:#e6db74">&#39;https://community.chocolatey.org/install.ps1&#39;</span>))
+</span></span></code></pre></div><p>![[20250131091903.png]]</p>
 
 
     
