@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatizando la Publicación de Blogs de Obsidian a Hugo</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+    <h1> Automatizando la Publicación de Blogs de Obsidian a Hugo </h1>
+    <p>  February 2, 2025 </p>
+    <p>Disclaimer:  99.9% AI written. I really didn&rsquo;t want to write the documentation for this one. Fyi this one is also in spanish. ALSOO, this is heavily inspired by Hardware Chuck&rsquo;s go at it, pls check out his yt video on the topic <a href="https://www.youtube.com/watch?v=dnE7c0ELEH8">I started a blog&hellip;..in 2024 (why you should too)</a></p>
+<h1 id="-automatizando-la-publicación-de-blogs-de-obsidian-a-hugo">🚀 Automatizando la Publicación de Blogs de Obsidian a Hugo</h1>
+<p>Si utilizas <strong>Obsidian</strong> para escribir tus notas y <strong>Hugo</strong> para tu sitio web, puede ser tedioso copiar manualmente cada nueva publicación e imagen. Para solucionar esto, he creado un flujo de trabajo automatizado usando <strong>PowerShell y Python</strong> que copia tus archivos y ajusta los enlaces de imágenes para que sean compatibles con Hugo. 💡</p>
+<hr>
+<h1 id="pre-requisitos">Pre-requisitos</h1>
+<ol>
+<li>
+<p>Configurar obsidian para que almancene las imagenes en un solo lugar
+<img src="/personal-website/images/20250202185104.png" alt=""></p>
+</li>
+<li>
+<p>Desabilita los wikilinks!! Esto nos salva muchos dolores de cabez
+<img src="/personal-website/images/20250202185236.png" alt=""></p>
+</li>
+</ol>
+<h1 id="-qué-hace-este-sistema">🛠️ ¿Qué hace este sistema?</h1>
+<ol>
+<li><strong>Copia los archivos Markdown</strong> de Obsidian a Hugo.</li>
+<li><strong>Copia las imágenes</strong> asociadas a los posts.</li>
+<li><strong>Corrige los enlaces de imágenes</strong> en los archivos Markdown para que se visualicen correctamente en Hugo.</li>
+<li><strong>Todo con un solo comando.</strong></li>
+</ol>
+<h1 id="-1-script-robocopy-posts-and-imagesps1">📜 1️⃣ Script <code>robocopy-posts-and-images.ps1</code></h1>
+<p>Este script usa <strong>Robocopy</strong> para copiar las publicaciones de Obsidian a Hugo, junto con las imágenes asociadas.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Copiar los posts de Obsidian a Hugo</span>
+</span></span><span style="display:flex;"><span>robocopy <span style="color:#e6db74">&#34;C:\ALMACENAMIENTO\acer\personal-website\blog-posts&#34;</span> <span style="color:#e6db74">&#34;C:\Users\crrvg\w11-codebases\personal-website\content\posts&#34;</span> /MIR /Z /W:5 /R:3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copiar imágenes de Obsidian a Hugo</span>
+</span></span><span style="display:flex;"><span>robocopy <span style="color:#e6db74">&#34;C:\ALMACENAMIENTO\acer\personal-website\images&#34;</span> <span style="color:#e6db74">&#34;C:\Users\crrvg\w11-codebases\personal-website\static\images&#34;</span> /MIR /Z /W:5 /R:3
+</span></span></code></pre></div><p>✅ <strong>Explicación:</strong></p>
+<ul>
+<li><code>/MIR</code>: Mantiene sincronizados los directorios (copia nuevas y elimina las que ya no están en el origen).</li>
+<li><code>/Z</code>: Permite reanudar copias interrumpidas.</li>
+<li><code>/W:5</code> y <code>/R:3</code>: Reduce tiempos de espera entre intentos fallidos.</li>
+</ul>
+<h1 id="-2-script-hugo-obsidian-image-copierpy">🐍 2️⃣ Script <code>hugo-obsidian-image-copier.py</code></h1>
+<p>Este script Python busca imágenes en los archivos Markdown y modifica sus rutas para que sean compatibles con Hugo.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> re
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Rutas</span>
+</span></span><span style="display:flex;"><span>hugo_blog_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;C:\Users\crrvg\w11-codebases\personal-website\content\posts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 🔹 Modificar los enlaces a imágenes en los Markdown</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> filename <span style="color:#f92672">in</span> os<span style="color:#f92672">.</span>listdir(hugo_blog_dir):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> filename<span style="color:#f92672">.</span>endswith(<span style="color:#e6db74">&#34;.md&#34;</span>):
+</span></span><span style="display:flex;"><span>        filepath <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>join(hugo_blog_dir, filename)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74">&#34;r&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> file:
+</span></span><span style="display:flex;"><span>            content <span style="color:#f92672">=</span> file<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Encontrar imágenes en el formato `![](/personal-website/images/test%201.png)`</span>
+</span></span><span style="display:flex;"><span>        images <span style="color:#f92672">=</span> re<span style="color:#f92672">.</span>findall(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;!\[\]\(([^)]+\.png)\)&#39;</span>, content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> image <span style="color:#f92672">in</span> images:
+</span></span><span style="display:flex;"><span>            new_image_path <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;/personal-website/images/</span><span style="color:#e6db74">{</span>image<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            content <span style="color:#f92672">=</span> content<span style="color:#f92672">.</span>replace(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;![](</span><span style="color:#e6db74">{</span>image<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>, <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;![](</span><span style="color:#e6db74">{</span>new_image_path<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Guardar cambios en el archivo Markdown</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> open(filepath, <span style="color:#e6db74">&#34;w&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span>) <span style="color:#66d9ef">as</span> file:
+</span></span><span style="display:flex;"><span>            file<span style="color:#f92672">.</span>write(content)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;✅ Links de imágenes en Markdown modificados para Hugo.&#34;</span>)
+</span></span></code></pre></div><p>✅ <strong>Explicación:</strong></p>
+<ul>
+<li><strong>Busca imágenes</strong> en los archivos <code>.md</code>.</li>
+<li><strong>Corrige las rutas</strong> para que Hugo pueda encontrarlas correctamente en la carpeta <code>static/images</code>.</li>
+</ul>
+<h1 id="-3-script-final-automated-obsidian-hugo-blogps1">🔁 3️⃣ Script Final <code>automated-obsidian-hugo-blog.ps1</code></h1>
+<p>Este script une todo el proceso en un solo comando:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Definir rutas de los scripts</span>
+</span></span><span style="display:flex;"><span>$robocopyScript <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:\Users\crrvg\w11-codebases\programming-journey\02.02.2025\robocopy-posts-and-images.ps1&#34;</span>
+</span></span><span style="display:flex;"><span>$pythonExecutable <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/crrvg/w11-codebases/programming-journey/.venv/Scripts/python.exe&#34;</span>
+</span></span><span style="display:flex;"><span>$pythonScript <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C:/Users/crrvg/w11-codebases/programming-journey/02.02.2025/hugo-obsidian-image-copier.py&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ejecutar el script de robocopy</span>
+</span></span><span style="display:flex;"><span>Write-Output <span style="color:#e6db74">&#34;🚀 Ejecutando copia de posts e imágenes...&#34;</span>
+</span></span><span style="display:flex;"><span>&amp; $robocopyScript
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ejecutar el script de Python</span>
+</span></span><span style="display:flex;"><span>Write-Output <span style="color:#e6db74">&#34;🐍 Ejecutando script de conversión de imágenes...&#34;</span>
+</span></span><span style="display:flex;"><span>&amp; $pythonExecutable $pythonScript
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Write-Output <span style="color:#e6db74">&#34;✅ Links de imágenes en Markdown modificados para Hugo.&#34;</span>
+</span></span></code></pre></div><h1 id="-cómo-ejecutarlo">🚀 ¿Cómo Ejecutarlo?</h1>
+<p>Solo necesitas correr este comando en PowerShell:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>.<span style="color:#ae81ff">\a</span>utomated-obsidian-hugo-blog.ps1
+</span></span></code></pre></div><p>🔥 ¡Listo! Tus posts e imágenes estarán sincronizados con Hugo sin esfuerzo. 🚀</p>
+<h1 id="code">Code!</h1>
+<p>Puedes revisar el codigo en my <a href="https://github.com/NotYetFound404/programming-journey">programming journey</a></p>
+<p>Casi me olvido, <code>pip freeze &gt; requirements.txt</code> siempreee. Comparto las librerias que utilicé</p>
+<p>Este proyecto en especifico por ahora está en <a href="https://github.com/NotYetFound404/programming-journey/tree/main/02.02.2025">02.02.2025</a>, tal vez luego este enlace se rompa. If so, refer to the programming journey repo instead</p>
+
+
+    
+ <footer>
+    Copyright © 2025 | Cesar Garcia | All rights reserved
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>

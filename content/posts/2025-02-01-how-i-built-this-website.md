@@ -2,6 +2,7 @@
 title: How I built this website (v.1.0.1)
 date: 2025-02-01
 ---
+
 # Introduction
 
 I’m building my minium-viable-product personal website A.K.A v.1.0.1 using **Hugo** from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:
@@ -268,16 +269,16 @@ This is by no means and exhaustive guide. I'm assuming you already have installe
 ### A. Initial GitHub Setup
 1. Create a new github repo
 2. Copy the URL
-![[20250131074948.png]]
+![](/personal-website/images/20250131074948.png)
 
 ### B. Local Machine
-1. Open VS Code
-2. CD into your Desktop
-3. In VS code's start page you'll see the following
-![[20250131080612.png]]
-4. Clone Git Repo > Paste the URL
-5. When you are done. Go to VS Code left tab, then source control, find the commit and add some text and add the changes to your repo!
-6. By now, the changes you have made should be displayed in your Github's online repo. Check if they are by opening the repo on your preferred search engine.
+3. Open VS Code
+4. CD into your Desktop
+5. In VS code's start page you'll see the following
+![](/personal-website/images/20250131080612.png)
+6. Clone Git Repo > Paste the URL
+7. When you are done. Go to VS Code left tab, then source control, find the commit and add some text and add the changes to your repo!
+8. By now, the changes you have made should be displayed in your Github's online repo. Check if they are by opening the repo on your preferred search engine.
 
 
 
@@ -316,4 +317,10 @@ Follows Chocolatey [install](https://community.chocolatey.org/courses/installati
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-![[20250131091903.png]]
+![](/personal-website/images/20250131091903.png)
+
+
+
+
+
+

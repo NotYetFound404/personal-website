@@ -6,8 +6,15 @@
     <description>Recent content in Home on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 01 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/personal-website/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Automatizando la Publicación de Blogs de Obsidian a Hugo</title>
+      <link>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</link>
+      <pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</guid>
+      <description>&lt;p&gt;Disclaimer:  99.9% AI written. I really didn&amp;rsquo;t want to write the documentation for this one. Fyi this one is also in spanish. ALSOO, this is heavily inspired by Hardware Chuck&amp;rsquo;s go at it, pls check out his yt video on the topic &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;I started a blog&amp;hellip;..in 2024 (why you should too)&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;-automatizando-la-publicación-de-blogs-de-obsidian-a-hugo&#34;&gt;🚀 Automatizando la Publicación de Blogs de Obsidian a Hugo&lt;/h1&gt;&#xA;&lt;p&gt;Si utilizas &lt;strong&gt;Obsidian&lt;/strong&gt; para escribir tus notas y &lt;strong&gt;Hugo&lt;/strong&gt; para tu sitio web, puede ser tedioso copiar manualmente cada nueva publicación e imagen. Para solucionar esto, he creado un flujo de trabajo automatizado usando &lt;strong&gt;PowerShell y Python&lt;/strong&gt; que copia tus archivos y ajusta los enlaces de imágenes para que sean compatibles con Hugo. 💡&lt;/p&gt;</description>
+    </item>
     <item>
       <title>How I built this website (v.1.0.1)</title>
       <link>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</link>
@@ -16,11 +23,11 @@
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;I’m building my minium-viable-product personal website A.K.A v.1.0.1 using &lt;strong&gt;Hugo&lt;/strong&gt; from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://sive.rs/&#34;&gt;Derek Sivers’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jaredwhite.com/&#34;&gt;Jared White’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://lukesmith.xyz/&#34;&gt;Luke Smith’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;What resonated with me from these websites is that they are all direct and distraction-free, emphasizing on the content which is big plus!&lt;/p&gt;&#xA;&lt;p&gt;In the future (v2.0.1), I plan to incorporate elements of &lt;strong&gt;Swiss Design&lt;/strong&gt; for a clean, modern aesthetic. And design a more seamless Obsidian to Hugo integration as per NetworkChuck &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;YT Video&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>Second Post</title>
-      <link>http://localhost:1313/personal-website/posts/2025-02-01-second-post/</link>
+      <title>TESTING</title>
+      <link>http://localhost:1313/personal-website/posts/example-post/</link>
       <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/personal-website/posts/2025-02-01-second-post/</guid>
-      <description>&lt;p&gt;Sample, text&lt;/p&gt;</description>
+      <guid>http://localhost:1313/personal-website/posts/example-post/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;http://localhost:1313/personal-website/personal-website/images/20250202184017.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
