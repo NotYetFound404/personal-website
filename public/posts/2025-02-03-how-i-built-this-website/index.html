@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I built this website (v.1.0.2)</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+<article class="post-page">
+    <h1>How I built this website (v.1.0.2)</h1>
+    <p>  Feb 3, 2025 </p>
+    <div class="content">
+        <p>Disclaimer:  &lt;10% AI written, &gt;90% AI proofread (uno con el otro jajaja), I jolted down some the main notes of this blog. I didn&rsquo;t allow me some time to re-estructure said notes in a <em>human™</em> matter. This one is also in spanish btw.</p>
+<h1 id="refactorización-y-estructuración-del-blog">Refactorización y Estructuración del Blog</h1>
+<p>En este post, comparto los cambios recientes que he realizado en la estructura y estilos de mi blog. El objetivo fue mejorar la organización del código, separar responsabilidades y preparar el terreno para futuras actualizaciones.</p>
+<hr>
+<h2 id="1-añadí-una-imagen">1. Añadí una Imagen</h2>
+<p>Para mejorar la experiencia visual, añadí una imagen relevante en la página de inicio. Esto ayuda a captar la atención de los visitantes y a transmitir mejor la esencia del contenido.</p>
+<hr>
+<h2 id="2-ajustes-en-el-footer">2. Ajustes en el Footer</h2>
+<p>Realicé algunos ajustes en el footer para que se vea más coherente con el diseño general del sitio. Estos cambios incluyen mejoras en la alineación, espaciado y tipografía.</p>
+<hr>
+<h2 id="3-refactorización-del-layout-principal">3. Refactorización del Layout Principal</h2>
+<h3 id="31-ajuste-del-default-layer-de-index">3.1. Ajuste del <code>default layer</code> de <code>index</code></h3>
+<p>Modifiqué el <code>default layer</code> del archivo <code>index</code> para definir un <code>main</code> más versátil. Este <code>main</code> hace referencia a un partial llamado <code>homepage/hero.html</code>.</p>
+<h4 id="311-creación-del-partial-homepageherohtml">3.1.1. Creación del Partial <code>homepage/hero.html</code></h4>
+<p>En este partial, creé un HTML básico con la información que quiero mostrar en la landing page:</p>
+<ul>
+<li><strong>Hero text</strong>: Un texto destacado que resume la esencia del blog.</li>
+<li><strong>Dos columnas</strong>: Una estructura de dos columnas para organizar el contenido.</li>
+<li><strong>Imagen</strong>: Una imagen relevante para acompañar el texto.</li>
+<li><strong>Redes sociales</strong>: Enlaces a mis perfiles en redes sociales.</li>
+</ul>
+<h4 id="312-añadir-estilos-con-sass">3.1.2. Añadir Estilos con SASS</h4>
+<p>Ahora, resta añadir los estilos a este HTML. Para ello, utilicé SASS para gestionar los estilos de manera más eficiente.</p>
+<h4 id="313-reestructuración-del-sass">3.1.3. Reestructuración del SASS</h4>
+<p>Reorganicé el SASS para que todos los estilos se ejecuten desde un solo punto de entrada: <code>main.css</code>. Los demás estilos deben ser específicos para cada sección del sitio, siguiendo el principio de <strong>separación de preocupaciones</strong>.</p>
+<h4 id="314-separación-de-módulos-css">3.1.4. Separación de Módulos CSS</h4>
+<p>Dividí los diferentes módulos de CSS en archivos separados para facilitar el mantenimiento y la escalabilidad:</p>
+<ul>
+<li><strong>Home</strong>: Estilos específicos para la página de inicio.</li>
+<li><strong>Footer</strong>: Estilos generales para el footer.</li>
+<li><strong>About</strong>: Estilos para la sección &ldquo;Acerca de mí&rdquo;.</li>
+<li><strong>Navbar</strong>: Estilos para la barra de navegación.</li>
+<li><strong>Post</strong>: Estilos para las entradas del blog.</li>
+</ul>
+<p>En el futuro, probablemente añadiré más módulos y subcarpetas para organizar mejor los estilos relacionados.</p>
+<hr>
+<h2 id="4-refactorización-de-estilos">4. Refactorización de Estilos</h2>
+<p>Durante el proceso de refactorización, noté que los estilos SCSS que tenía anteriormente se aplicaban a todo el sitio web. Originalmente, estos estilos estaban pensados para visualizar &ldquo;calmadamente&rdquo; mis notas contemplativas o posts.</p>
+<p>Para solucionar esto, separé los estilos de las notas utilizando <strong>tags</strong> en los layouts y HTML. Esto permite que los estilos generales del sitio web (con un enfoque &ldquo;medianamente profesional&rdquo;) sean diferentes de los estilos más personales y contemplativos de mis notas.</p>
+<hr>
+<h2 id="5-estado-actual-del-blog">5. Estado Actual del Blog</h2>
+<p>Actualmente, el blog cuenta con:</p>
+<ul>
+<li><strong>Homepage</strong>: Con sus propios estilos.</li>
+<li><strong>About Me</strong>: Con estilos diferentes y personalizados.</li>
+<li><strong>Blogs</strong>: Con estilos específicos para las entradas.</li>
+</ul>
+<hr>
+<h2 id="6-próximos-pasos">6. Próximos Pasos</h2>
+<h3 id="61-añadir-proyectos">6.1. Añadir Proyectos</h3>
+<p>Tengo planeado añadir una sección para mostrar mis proyectos. Esto incluirá una breve descripción de cada proyecto, tecnologías utilizadas y enlaces relevantes.</p>
+<h3 id="62-separación-de-estilos-para-tipos-de-blogs">6.2. Separación de Estilos para Tipos de Blogs</h3>
+<p>Estoy considerando separar los estilos para los blogs de tipo <strong>técnico</strong> de los blogs más <strong>contemplativos</strong>. Esto permitirá una experiencia de lectura más adecuada para cada tipo de contenido.</p>
+<hr>
+<h2 id="conclusión">Conclusión</h2>
+<p>Estos cambios han mejorado significativamente la estructura y organización de mi blog. Aunque aún hay trabajo por hacer, estoy satisfecho con el progreso y emocionado por las próximas actualizaciones.</p>
+<p>¡Gracias por leer! Si tienes alguna sugerencia o comentario, no dudes en compartirlo.</p>
+
+    </div>
+</article>
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>

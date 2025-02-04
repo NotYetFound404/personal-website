@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>http://localhost:1313/personal-website/posts/</loc>
+    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/</loc>
+    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/</loc>
+    <lastmod>2025-02-03T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</loc>
     <lastmod>2025-02-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/</loc>
-    <lastmod>2025-02-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/personal-website/</loc>
-    <lastmod>2025-02-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</loc>
+    <loc>http://localhost:1313/personal-website/posts/2025-02-01-test-theme/</loc>
     <lastmod>2025-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-01-test-theme/</loc>
+    <loc>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</loc>
     <lastmod>2025-02-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/about/</loc>

@@ -97,37 +97,24 @@
   }
 
   /*intentar resolver problemas con los highlighted code blocks*/
-/* Cambiar el fondo de la clase .highlight */
-.highlight {
-  background-color: #ffffff; /* Fondo claro */
-  border-radius: 10px; /* Bordes redondeados */
-  padding: 0.55rem; /* Espaciado interno */
-  padding: 0.55rem;
-  margin: 2.5rem;
-  overflow-x: auto; /* Scroll horizontal si el código es largo */
-}
+  /* Cambiar el fondo de la clase .highlight */
+  .highlight {
+    background-color: #ffffff; /* Fondo claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 0.55rem; /* Espaciado interno */
+    padding: 0.55rem;
+    margin: 2.5rem;
+    overflow-x: auto; /* Scroll horizontal si el código es largo */
+  }
 
-/* Cambiar el fondo del <pre> dentro de .highlight */
-.highlight pre, code {
-  background-color:  #ede9e9 !important; /* Fondo transparente */
-  border-radius: 10px; /* Bordes redondeados */
-  color: #333; /* Color de texto oscuro */
-  padding: 0; /* Eliminar padding adicional */
-  margin: 0; /* Eliminar margen adicional */
-}
-
-/* Cambiar colores de los tokens */
-// .highlight .chroma .k { /* Palabras clave */
-//   color: #d73a49; /* Rojo */
-// }
-
-// .highlight .chroma .s { /* Strings */
-//   color: #032f62; /* Azul */
-// }
-
-// .highlight .chroma .mi { /* Números */
-//   color: #005cc5; /* Azul claro */
-// }
+  /* Cambiar el fondo del <pre> dentro de .highlight */
+  .highlight pre, code {
+    background-color:  #ede9e9 !important; /* Fondo transparente */
+    border-radius: 10px; /* Bordes redondeados */
+    color: #333; /* Color de texto oscuro */
+    padding: 0; /* Eliminar padding adicional */
+    margin: 0; /* Eliminar margen adicional */
+  }
 
 
 }
