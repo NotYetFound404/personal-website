@@ -1,13 +1,8 @@
 ---
 title: About
 hide_footer: false
+layout: "about"
 ---
-
-// WIP //
-
-This is the about page for my personal website.
-
-// WIP//
 
 # **Who am I?**  
 Hi! I'm Cesar Garcia, a final-year finance student interning at Moody's Local PE. In my spare time, I enjoy reading, learning new _things™_, and understanding different perspectives. Currently, I'm focused on coding and preparing for the CFA and FRM.

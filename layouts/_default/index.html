@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {{ partial "meta.html" . }}
-</head>
-<body>
-    {{ partial "nav.html"}}    
-    <p>THIS SHOULD ONLY DISPLAY TEXT FOR THE BASEURL OTHER DEFAULTS USE OTHER LAYOUT</p>
-    {{ .Content}}
-    {{ partial "footer.html" .}}
-</body>
-</html>
+{{ define "main" }}
+<main class="home-page">
+    <!-- Secciones de la Homepage -->
+    {{ partial "homepage/hero.html" . }}
+</main>
+{{end}}

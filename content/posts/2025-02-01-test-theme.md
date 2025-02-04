@@ -2,6 +2,7 @@
 title: test-theme
 date: 2025-02-01
 ---
+Based on StefanoCecere's [.md](https://github.com/StefanoCecere/obsidian-2042-theme/blob/master/test.md)
 
 # Write Markdown
 
