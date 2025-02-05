@@ -94,3 +94,25 @@
         }
     }
 }
+
+/*animation??*/
+.hero {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+  }
+  
+  .hero {
+    animation: fadeInUp 0.9s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(85px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+  }

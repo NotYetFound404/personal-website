@@ -23,6 +23,13 @@ body {
 /* Importar css de cada seccion*/
 @import "post";
 @import "home/hero";
+@import "home/minimal-project";
+@import "home/projects-intro";
+@import "home/contact-me";
 @import "navbar";
 @import "footer";
-@import "about"
+@import "about";
+
+@import "blog";
+
+
