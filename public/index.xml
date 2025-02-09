@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Home on My New Hugo Site</title>
-    <link>https://notyetfound404.github.io/personal-website/</link>
+    <link>http://localhost:1313/personal-website/</link>
     <description>Recent content in Home on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Feb 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://notyetfound404.github.io/personal-website/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/personal-website/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How I built this website (v.1.0.2)</title>
-      <link>https://notyetfound404.github.io/personal-website/posts/2025-02-03-how-i-built-this-website/</link>
+      <link>http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/</link>
       <pubDate>Mon, 03 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://notyetfound404.github.io/personal-website/posts/2025-02-03-how-i-built-this-website/</guid>
+      <guid>http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/</guid>
       <description>&lt;p&gt;Disclaimer:  &amp;lt;10% AI written, &amp;gt;90% AI proofread (uno con el otro jajaja), I jolted down some the main notes of this blog. I didn&amp;rsquo;t allow me some time to re-estructure said notes in a &lt;em&gt;human™&lt;/em&gt; matter. This one is also in spanish btw.&lt;/p&gt;&#xA;&lt;h1 id=&#34;refactorización-y-estructuración-del-blog&#34;&gt;Refactorización y Estructuración del Blog&lt;/h1&gt;&#xA;&lt;p&gt;En este post, comparto los cambios recientes que he realizado en la estructura y estilos de mi blog. El objetivo fue mejorar la organización del código, separar responsabilidades y preparar el terreno para futuras actualizaciones.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Automatizando la Publicación de Blogs de Obsidian a Hugo</title>
-      <link>https://notyetfound404.github.io/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</link>
+      <link>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</link>
       <pubDate>Sun, 02 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://notyetfound404.github.io/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</guid>
+      <guid>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</guid>
       <description>&lt;p&gt;Disclaimer:  99.9% AI written. I really didn&amp;rsquo;t want to write the documentation for this one. Fyi this one is also in spanish. ALSOO, this is heavily inspired by Hardware Chuck&amp;rsquo;s go at it, pls check out his yt video on the topic &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;I started a blog&amp;hellip;..in 2024 (why you should too)&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;-automatizando-la-publicación-de-blogs-de-obsidian-a-hugo&#34;&gt;🚀 Automatizando la Publicación de Blogs de Obsidian a Hugo&lt;/h1&gt;&#xA;&lt;p&gt;Si utilizas &lt;strong&gt;Obsidian&lt;/strong&gt; para escribir tus notas y &lt;strong&gt;Hugo&lt;/strong&gt; para tu sitio web, puede ser tedioso copiar manualmente cada nueva publicación e imagen. Para solucionar esto, he creado un flujo de trabajo automatizado usando &lt;strong&gt;PowerShell y Python&lt;/strong&gt; que copia tus archivos y ajusta los enlaces de imágenes para que sean compatibles con Hugo. 💡&lt;/p&gt;</description>
     </item>
     <item>
       <title>A simple markdown file to test styles</title>
-      <link>https://notyetfound404.github.io/personal-website/posts/2025-02-01-test-theme/</link>
+      <link>http://localhost:1313/personal-website/posts/2025-02-01-test-theme/</link>
       <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://notyetfound404.github.io/personal-website/posts/2025-02-01-test-theme/</guid>
+      <guid>http://localhost:1313/personal-website/posts/2025-02-01-test-theme/</guid>
       <description>&lt;p&gt;Based on StefanoCecere&amp;rsquo;s &lt;a href=&#34;https://github.com/StefanoCecere/obsidian-2042-theme/blob/master/test.md&#34;&gt;.md&lt;/a&gt;&lt;/p&gt;&#xA;&lt;h1 id=&#34;write-markdown&#34;&gt;Write Markdown&lt;/h1&gt;&#xA;&lt;blockquote&gt;&#xA;&lt;p&gt;let&amp;rsquo;s test this theme!&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;p&gt;Here are some samples for Markdown formatting like &lt;strong&gt;strong&lt;/strong&gt; and &lt;em&gt;italics&lt;/em&gt; and chapters.&lt;/p&gt;&#xA;&lt;h1 id=&#34;heading-1&#34;&gt;Heading 1&lt;/h1&gt;&#xA;&lt;h2 id=&#34;headings-2&#34;&gt;Headings 2&lt;/h2&gt;&#xA;&lt;p&gt;Text under Heading 2&lt;/p&gt;&#xA;&lt;h3 id=&#34;heading-3&#34;&gt;Heading 3&lt;/h3&gt;&#xA;&lt;p&gt;Text under Heading 3&lt;/p&gt;&#xA;&lt;h4 id=&#34;heading-4&#34;&gt;Heading 4&lt;/h4&gt;&#xA;&lt;p&gt;Text under Heading 4&lt;/p&gt;&#xA;&lt;h5 id=&#34;heading-5&#34;&gt;Heading 5&lt;/h5&gt;&#xA;&lt;p&gt;Text under Heading 5&lt;/p&gt;&#xA;&lt;h2 id=&#34;emphasis&#34;&gt;Emphasis&lt;/h2&gt;&#xA;&lt;p&gt;Emphasis, aka italics, with &lt;em&gt;asterisks&lt;/em&gt; or &lt;em&gt;underscores&lt;/em&gt;.&lt;br&gt;&#xA;Strong emphasis, aka bold, with &lt;strong&gt;asterisks&lt;/strong&gt; or &lt;strong&gt;underscores&lt;/strong&gt;.&lt;br&gt;&#xA;Combined emphasis with &lt;strong&gt;asterisks and &lt;em&gt;underscores&lt;/em&gt;&lt;/strong&gt;.&lt;br&gt;&#xA;Strikethrough uses two tildes. &lt;del&gt;Scratch this.&lt;/del&gt;&lt;/p&gt;</description>
     </item>
     <item>
       <title>How I built this website (v.1.0.1)</title>
-      <link>https://notyetfound404.github.io/personal-website/posts/2025-02-01-how-i-built-this-website/</link>
+      <link>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</link>
       <pubDate>Sat, 01 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>https://notyetfound404.github.io/personal-website/posts/2025-02-01-how-i-built-this-website/</guid>
+      <guid>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;&#xA;&lt;p&gt;I’m building my minium-viable-product personal website A.K.A v.1.0.1 using &lt;strong&gt;Hugo&lt;/strong&gt; from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://sive.rs/&#34;&gt;Derek Sivers’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://jaredwhite.com/&#34;&gt;Jared White’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://lukesmith.xyz/&#34;&gt;Luke Smith’s site&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;What resonated with me from these websites is that they are all direct and distraction-free, emphasizing on the content which is big plus!&lt;/p&gt;&#xA;&lt;p&gt;In the future (v2.0.1), I plan to incorporate elements of &lt;strong&gt;Swiss Design&lt;/strong&gt; for a clean, modern aesthetic. And design a more seamless Obsidian to Hugo integration as per NetworkChuck &lt;a href=&#34;https://www.youtube.com/watch?v=dnE7c0ELEH8&#34;&gt;YT Video&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>About</title>
-      <link>https://notyetfound404.github.io/personal-website/about/</link>
+      <link>http://localhost:1313/personal-website/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://notyetfound404.github.io/personal-website/about/</guid>
+      <guid>http://localhost:1313/personal-website/about/</guid>
       <description>&lt;h1 id=&#34;who-am-i&#34;&gt;&lt;strong&gt;Who am I?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Hi! I&amp;rsquo;m Cesar Garcia, a final-year finance student interning at Moody&amp;rsquo;s Local PE. In my spare time, I enjoy reading, learning new &lt;em&gt;things™&lt;/em&gt;, and understanding different perspectives. Currently, I&amp;rsquo;m focused on coding and preparing for the CFA and FRM.&lt;/p&gt;&#xA;&lt;h1 id=&#34;what-have-i-done&#34;&gt;&lt;strong&gt;What have I done?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;Succintly: thought, explored, learned, and adapted.&lt;/p&gt;&#xA;&lt;h1 id=&#34;how-can-i-help-you&#34;&gt;&lt;strong&gt;How can I help you?&lt;/strong&gt;&lt;/h1&gt;&#xA;&lt;p&gt;My experience has helped me develop skills to tackle issues related credit risk, data analysis, and corporate finance. Being at an early stage in my career, however, I&amp;rsquo;m still learning.&lt;/p&gt;</description>
     </item>
   </channel>

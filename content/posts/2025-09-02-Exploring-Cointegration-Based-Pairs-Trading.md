@@ -1,3 +1,7 @@
+---
+title: Exploring Cointegration-Based Pairs Trading. A Quantitative Approach in R
+date: 2025-09-02
+---
 
 # 📈 Exploring Cointegration-Based Pairs Trading: A Quantitative Approach in R
 
