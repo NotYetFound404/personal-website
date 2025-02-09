@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How I built this website (v.1.0.3)</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+<article class="post-page">
+    <h1>How I built this website (v.1.0.3)</h1>
+    <p>  Feb 9, 2025 </p>
+    <div class="content">
+        <h1 id="the-big-refactor-improving-my-websites-structure-and-styles">The Big Refactor: Improving My Website&rsquo;s Structure and Styles</h1>
+<p>Recently, I undertook a major refactor of my website to improve its structure, maintainability, and aesthetics. This update focuses on better-organized styles, enhanced animations, and a more polished homepage. Here’s a breakdown of what changed:</p>
+<h2 id="-style-refactoring">🔹 Style Refactoring</h2>
+<ul>
+<li><strong>Blog Section:</strong> The styles for the blog section were cleaned up and improved for better readability and consistency.</li>
+<li><strong>Navbar:</strong> The navigation bar received a design overhaul.</li>
+<li><strong>Home &amp; Contact Me:</strong> The styles for the homepage and the contact section were revamped.</li>
+</ul>
+<h2 id="-new-animations">✨ New Animations</h2>
+<ul>
+<li><strong>Hero Section:</strong> I added subtle animations to the hero section to make the website feel more dynamic and engaging.</li>
+</ul>
+<h2 id="-projects-display">🏗️ Projects Display</h2>
+<ul>
+<li><strong>Minimal Projects Section:</strong> Added styles to ensure project previews look neat and visually consistent.</li>
+<li><strong>Projects Intro:</strong> Styled the new introduction section for the projects page on the homepage.</li>
+<li><strong>Projects Data:</strong> Created dummy data in <code>data/projects.yaml</code> to dynamically populate the projects list.</li>
+</ul>
+<h2 id="-homepage-enhancements">🏡 Homepage Enhancements</h2>
+<ul>
+<li><strong>Updated HTML Structure:</strong> Modified <code>layouts/default/index.html</code> to include the projects intro, projects list, and contact me sections.</li>
+<li><strong>Contact Me Partial:</strong> Hardcoded <code>layouts/partials/homepage/contact-me.html</code> and linked it to its SCSS file for styling.</li>
+<li><strong>Projects Preview:</strong> Now all projects listed in <code>projects.yaml</code> are displayed in <code>layouts/partials/homepage/minimal-projects.html</code>.</li>
+<li><strong>Projects Intro Section:</strong> Added <code>layouts/partials/homepage/projects-intro.html</code> and linked it to its corresponding styles.</li>
+</ul>
+<h2 id="-blog-section-improvements">📄 Blog Section Improvements</h2>
+<ul>
+<li><strong>Updated Blog Posts List:</strong> The blog post listing in <code>layout/posts/list.html</code> now has a more structured layout with proper sections and divs.</li>
+</ul>
+<h2 id="-global-styles-update">🎨 Global Styles Update</h2>
+<ul>
+<li><strong>SCSS Imports:</strong> Updated <code>main.scss</code> to ensure all new and refactored styles are properly imported and structured.</li>
+</ul>
+<p>This refactor not only cleans up the structure but also makes future updates easier. More improvements are on the way, but for now, the site is looking and feeling much better! 🚀</p>
+<p>Feel free to deep dive into the code changes in this <a href="https://github.com/NotYetFound404/personal-website/commit/335bc0f31b03fcdb1de2aadf5e58181031862c98">commit</a></p>
+
+    </div>
+</article>
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>

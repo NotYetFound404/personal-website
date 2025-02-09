@@ -3,10 +3,25 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/personal-website/posts/</loc>
-    <lastmod>2025-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/</loc>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/projects/cointegration-based-pairs-trading/</loc>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/</loc>
-    <lastmod>2025-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/posts/2025-05-02-how-i-built-this-website/</loc>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/projects/</loc>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/projects/sample/</loc>
+    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/</loc>
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>

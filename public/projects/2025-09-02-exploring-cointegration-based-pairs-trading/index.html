@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploring Cointegration (Pairs Trading)</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+    <h1 id="-exploring-cointegration-based-pairs-trading-a-quantitative-approach-in-r">📈 Exploring Cointegration-Based Pairs Trading: A Quantitative Approach in R</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>In the ever-evolving landscape of quantitative trading, pairs trading stands out as a compelling strategy that combines statistical rigor with market intuition. At its core, pairs trading is a market-neutral strategy that capitalizes on relative price movements between related securities, making it particularly attractive in volatile markets.</p>
+<h3 id="why-pairs-trading">Why Pairs Trading?</h3>
+<p>Statistical arbitrage, the foundation of pairs trading, operates on the principle that certain securities maintain a mathematical relationship over time. When this relationship temporarily deviates from its historical norm, it creates opportunities for profit. Unlike traditional directional trading, pairs trading can generate returns regardless of broader market conditions, making it a valuable addition to any quantitative portfolio.</p>
+<p>Markets, despite their increasing efficiency, still exhibit temporary mispricings. These inefficiencies often arise from various factors: institutional constraints, investor behavior, or temporary supply-demand imbalances. Pairs trading provides a systematic approach to exploit these opportunities while maintaining relatively low market exposure.</p>
+<h3 id="motivation-for-this-experiment">Motivation for this Experiment</h3>
+<p>Our experiment focuses on cointegration as a statistical framework for identifying pairs trading opportunities. We&rsquo;ve chosen GOOG (Google) and SPY (S&amp;P 500 ETF) as our test pair, representing a classic example of a large-cap tech stock versus the broader market. This relationship often exhibits mean-reverting properties, making it an ideal candidate for our analysis.</p>
+<p>Cointegration offers several advantages over traditional correlation-based approaches:</p>
+<ul>
+<li>It captures long-term equilibrium relationships</li>
+<li>It&rsquo;s more robust to non-stationary price series</li>
+<li>It provides a statistical foundation for mean reversion</li>
+</ul>
+<h3 id="overview-of-the-approach">Overview of the Approach</h3>
+<p>Our methodology follows a systematic, data-driven approach:</p>
+<p><strong>First</strong>, we&rsquo;ll <em>generate synthetic cointegrated data</em> to understand the ideal properties we&rsquo;re looking for in real market pairs. This controlled environment allows us to validate our methodology before applying it to actual market data.</p>
+<p>We <strong>then</strong> implement <em>rolling cointegration tests</em> to capture the dynamic nature of market relationships. This adaptive approach acknowledges that market relationships aren&rsquo;t static but evolve over time.</p>
+<p>The heart of our strategy lies in <strong>constructing</strong> <em>trading signals based on the spread</em> between our paired securities. By normalizing this spread and establishing threshold levels, we create a systematic framework for trade entry and exit.</p>
+<p><strong>Finally</strong>, we&rsquo;ll conduct thorough <em>backtesting to evaluate the strategy&rsquo;s performance</em>, analyzing various metrics to understand its strengths and weaknesses.</p>
+<h2 id="2-understanding-cointegration-in-trading">2. Understanding Cointegration in Trading</h2>
+<h3 id="what-is-cointegration">What is Cointegration?</h3>
+<p>While correlation measures the degree of linear relationship between two variables, cointegration captures a deeper, more fundamental connection. Two price series are cointegrated if they share a long-term equilibrium relationship, even though they may deviate from this equilibrium in the short term.</p>
+<p>Consider two stocks in the same sector: while their daily price movements (correlation) might vary, if they&rsquo;re cointegrated, their prices will tend to move together over longer periods. This long-term equilibrium provides the foundation for our mean reversion strategy.</p>
+<h3 id="mathematical-foundation">Mathematical Foundation</h3>
+<p>The Engle-Granger cointegration test forms the backbone of our analysis. This two-step approach first estimates the long-term equilibrium relationship:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e"># Step 1: Estimate the cointegrating relationship</span>
+</span></span><span style="display:flex;"><span>lm_model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(price_A <span style="color:#f92672">~</span> price_B)
+</span></span><span style="display:flex;"><span>beta <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">coef</span>(lm_model)[2]  <span style="color:#75715e"># This is our hedge ratio</span>
+</span></span></code></pre></div><p>The hedge ratio (β) tells us how many units of security B we should trade against each unit of security A to create a market-neutral position. The spread between our securities is then defined as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>spread <span style="color:#f92672">&lt;-</span> price_A <span style="color:#f92672">-</span> (beta <span style="color:#f92672">*</span> price_B)
+</span></span></code></pre></div><p>We implement a rolling window approach to capture changing market dynamics:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>rolling_cointegration_test <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data, window_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span>) {
+</span></span><span style="display:flex;"><span>  n <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">nrow</span>(data)
+</span></span><span style="display:flex;"><span>  results <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>()
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>(n <span style="color:#f92672">-</span> window_size <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)) {
+</span></span><span style="display:flex;"><span>    window_data <span style="color:#f92672">&lt;-</span> data[i<span style="color:#f92672">:</span>(i <span style="color:#f92672">+</span> window_size <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), ]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Fit regression</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lm</span>(SPY <span style="color:#f92672">~</span> GOOG, data <span style="color:#f92672">=</span> window_data)
+</span></span><span style="display:flex;"><span>    residuals <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">residuals</span>(model)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Perform statistical tests</span>
+</span></span><span style="display:flex;"><span>    adf_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">adf.test</span>(residuals, alternative <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;stationary&#34;</span>)
+</span></span><span style="display:flex;"><span>    po_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">po.test</span>(window_data[, <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;GOOG&#34;</span>, <span style="color:#e6db74">&#34;SPY&#34;</span>)])
+</span></span><span style="display:flex;"><span>    dw_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">dwtest</span>(model)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Store results</span>
+</span></span><span style="display:flex;"><span>    results[[i]] <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tibble</span>(
+</span></span><span style="display:flex;"><span>      start_date <span style="color:#f92672">=</span> window_data<span style="color:#f92672">$</span>date[1],
+</span></span><span style="display:flex;"><span>      end_date <span style="color:#f92672">=</span> window_data<span style="color:#f92672">$</span>date[window_size],
+</span></span><span style="display:flex;"><span>      hedge_ratio <span style="color:#f92672">=</span> <span style="color:#a6e22e">coef</span>(model)[<span style="color:#e6db74">&#34;GOOG&#34;</span>],
+</span></span><span style="display:flex;"><span>      adf_pvalue <span style="color:#f92672">=</span> adf_test<span style="color:#f92672">$</span>p.value,
+</span></span><span style="display:flex;"><span>      po_pvalue <span style="color:#f92672">=</span> po_test<span style="color:#f92672">$</span>p.value,
+</span></span><span style="display:flex;"><span>      dw_statistic <span style="color:#f92672">=</span> dw_test<span style="color:#f92672">$</span>statistic,
+</span></span><span style="display:flex;"><span>      is_cointegrated <span style="color:#f92672">=</span> <span style="color:#a6e22e">ifelse</span>(adf_test<span style="color:#f92672">$</span>p.value <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.05</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(<span style="color:#a6e22e">bind_rows</span>(results))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="3-setting-up-the-experiment-in-r">3. Setting Up the Experiment in R</h2>
+<h3 id="step-1-data-generation">Step 1: Data Generation</h3>
+<p>To ensure we understand the mechanics of our strategy, we&rsquo;ll first work with synthetic data that exhibits known cointegration properties. This controlled environment helps us validate our methodology before applying it to real market data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>generate_cointegrated_pair <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>, beta <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span>, noise <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Generate random walk for first series</span>
+</span></span><span style="display:flex;"><span>  price_A <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cumsum</span>(<span style="color:#a6e22e">rnorm</span>(n, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>))
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Generate cointegrated series</span>
+</span></span><span style="display:flex;"><span>  error <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">arima.sim</span>(<span style="color:#a6e22e">list</span>(ar <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>), n) <span style="color:#f92672">*</span> noise
+</span></span><span style="display:flex;"><span>  price_B <span style="color:#f92672">&lt;-</span> (price_A <span style="color:#f92672">/</span> beta) <span style="color:#f92672">+</span> error
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span>(<span style="color:#a6e22e">data.frame</span>(
+</span></span><span style="display:flex;"><span>    date <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq.Date</span>(from <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sys.Date</span>() <span style="color:#f92672">-</span> n <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, to <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sys.Date</span>(), by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;day&#34;</span>),
+</span></span><span style="display:flex;"><span>    GOOG <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">+</span> price_A,  <span style="color:#75715e"># Arbitrary starting price for GOOG</span>
+</span></span><span style="display:flex;"><span>    SPY <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">+</span> price_B    <span style="color:#75715e"># Arbitrary starting price for SPY</span>
+</span></span><span style="display:flex;"><span>  ))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate sample data</span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">generate_cointegrated_pair</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">180</span>)
+</span></span></code></pre></div><h3 id="step-2-visualization">Step 2: Visualization</h3>
+<p>Visualizing our data helps us understand the relationship between the pairs and verify our data generation process:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>viz_pair_data <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(ggplot2)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ggplot</span>(data, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> date)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(y <span style="color:#f92672">=</span> GOOG, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Google (Series A)&#34;</span>)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(y <span style="color:#f92672">=</span> SPY, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SPY (Series B)&#34;</span>)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cointegrated Price Series&#34;</span>,
+</span></span><span style="display:flex;"><span>         y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Price&#34;</span>,
+</span></span><span style="display:flex;"><span>         color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Series&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scale_color_brewer</span>(palette <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Set1&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><img src="/personal-website/images/2025090201.png" alt=""></p>
+<h2 id="4-cointegration-testing-rolling-window-approach">4. Cointegration Testing: Rolling Window Approach</h2>
+<h3 id="step-3-implementing-rolling-cointegration-tests">Step 3: Implementing Rolling Cointegration Tests</h3>
+<p>The market&rsquo;s dynamic nature requires us to continuously reassess the cointegration relationship. We implement a rolling window approach with a 60-day lookback period:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>rolling_tests <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rolling_cointegration_test</span>(data, window_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>) <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mutate</span>(date <span style="color:#f92672">=</span> end_date) <span style="color:#75715e"># For joining purposes</span>
+</span></span></code></pre></div><h3 id="step-4-merging-cointegration-results-with-price-data">Step 4: Merging Cointegration Results with Price Data</h3>
+<p>We align our test results with the price data to create a complete dataset for signal generation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>full_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">full_join</span>(
+</span></span><span style="display:flex;"><span>  data,
+</span></span><span style="display:flex;"><span>  rolling_tests,
+</span></span><span style="display:flex;"><span>  by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;date&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="5-constructing-the-trading-strategy">5. Constructing the Trading Strategy</h2>
+<h3 id="step-5-computing-the-spread">Step 5: Computing the Spread</h3>
+<p>The spread represents our trading signal and is calculated using the dynamic hedge ratio:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>calculate_spread <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data) {
+</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>      spread <span style="color:#f92672">=</span> GOOG <span style="color:#f92672">-</span> (hedge_ratio <span style="color:#f92672">*</span> SPY)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>trading_data <span style="color:#f92672">&lt;-</span> full_data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">na.omit</span>() <span style="color:#f92672">%&gt;%</span> <span style="color:#75715e"># Remove NA values from the start of the rolling window</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">calculate_spread</span>()
+</span></span></code></pre></div><h3 id="step-6-normalizing-the-spread-with-z-score">Step 6: Normalizing the Spread with Z-score</h3>
+<p>We standardize the spread to create comparable signals across time:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>calculate_zscore <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data, window <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>) {
+</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>      roll_mean <span style="color:#f92672">=</span> <span style="color:#a6e22e">runMean</span>(spread, n <span style="color:#f92672">=</span> window),
+</span></span><span style="display:flex;"><span>      roll_sd <span style="color:#f92672">=</span> <span style="color:#a6e22e">runSD</span>(spread, n <span style="color:#f92672">=</span> window),
+</span></span><span style="display:flex;"><span>      zscore <span style="color:#f92672">=</span> (spread <span style="color:#f92672">-</span> roll_mean) <span style="color:#f92672">/</span> roll_sd
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>trading_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">calculate_zscore</span>(trading_data,window <span style="color:#f92672">=</span> <span style="color:#ae81ff">7</span>)
+</span></span></code></pre></div><h3 id="step-7-defining-trading-signals">Step 7: Defining Trading Signals</h3>
+<p>Our trading rules are based on z-score thresholds and cointegration status:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>generate_signals <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data, zscore_threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>            signal <span style="color:#f92672">=</span> <span style="color:#a6e22e">case_when</span>(
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">!</span>is_cointegrated <span style="color:#f92672">~</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                zscore <span style="color:#f92672">&gt;</span> zscore_threshold <span style="color:#f92672">~</span> <span style="color:#ae81ff">-1</span>,  <span style="color:#75715e"># Short spread</span>
+</span></span><span style="display:flex;"><span>                zscore <span style="color:#f92672">&lt;</span> <span style="color:#f92672">-</span>zscore_threshold <span style="color:#f92672">~</span> <span style="color:#ae81ff">1</span>,  <span style="color:#75715e"># Long spread</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">TRUE</span> <span style="color:#f92672">~</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>trading_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">generate_signals</span>(trading_data)
+</span></span></code></pre></div><h3 id="step-8-visualizing-spread-and-signals">Step 8: Visualizing Spread and Signals</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>plot_spread_signals <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">library</span>(ggplot2)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ggplot</span>(data, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> date)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_line</span>(<span style="color:#a6e22e">aes</span>(y <span style="color:#f92672">=</span> zscore)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_hline</span>(yintercept <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-1</span>, <span style="color:#ae81ff">1</span>), linetype <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dashed&#34;</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_point</span>(data <span style="color:#f92672">=</span> <span style="color:#a6e22e">filter</span>(data, signal <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>               <span style="color:#a6e22e">aes</span>(y <span style="color:#f92672">=</span> zscore, color <span style="color:#f92672">=</span> <span style="color:#a6e22e">factor</span>(signal))) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Z-score and Trading Signals&#34;</span>,
+</span></span><span style="display:flex;"><span>         y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Z-score&#34;</span>,
+</span></span><span style="display:flex;"><span>         color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Signal&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plot_spread_signals</span>(trading_data<span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">na.omit</span>() )
+</span></span></code></pre></div><p><img src="/personal-website/images/2025090202.png" alt=""></p>
+<h2 id="6-backtesting-the-strategy">6. Backtesting the Strategy</h2>
+<h3 id="step-9-computing-strategy-returns">Step 9: Computing Strategy Returns</h3>
+<p>We calculate both individual security returns and strategy performance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>calculate_returns <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data) {
+</span></span><span style="display:flex;"><span>  data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">na.omit</span>() <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>      ret_GOOG <span style="color:#f92672">=</span> GOOG <span style="color:#f92672">/</span> <span style="color:#a6e22e">lag</span>(GOOG) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      ret_SPY <span style="color:#f92672">=</span> SPY <span style="color:#f92672">/</span> <span style="color:#a6e22e">lag</span>(SPY) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>      strategy_ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">lag</span>(signal) <span style="color:#f92672">*</span> (ret_GOOG <span style="color:#f92672">-</span> hedge_ratio <span style="color:#f92672">*</span> ret_SPY),  <span style="color:#75715e"># Strategy P&amp;L</span>
+</span></span><span style="display:flex;"><span>      cumulative_ret <span style="color:#f92672">=</span> <span style="color:#a6e22e">cumprod</span>(<span style="color:#ae81ff">1</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">replace_na</span>(strategy_ret, <span style="color:#ae81ff">0</span>))  <span style="color:#75715e"># Cumulative returns</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">calculate_returns</span>(trading_data)
+</span></span></code></pre></div><h3 id="step-10-visualizing-portfolio-performance">Step 10: Visualizing Portfolio Performance</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>plot_portfolio_over_time <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(results) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ggplot</span>(results, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> date, y <span style="color:#f92672">=</span> cumulative_ret)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">geom_line</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">theme_minimal</span>() <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cumulative Strategy Returns&#34;</span>,
+</span></span><span style="display:flex;"><span>         y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Return&#34;</span>,
+</span></span><span style="display:flex;"><span>         x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Date&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">scale_y_continuous</span>(labels <span style="color:#f92672">=</span> scales<span style="color:#f92672">::</span>percent)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plot_portfolio_over_time</span>(backtest_data)
+</span></span></code></pre></div><p><img src="/personal-website/images/2025090203.png" alt=""></p>
+<h3 id="step-11-interpreting-results">Step 11: Interpreting Results</h3>
+<p><img src="/personal-website/images/2025090204.png" alt="">
+<img src="/personal-website/images/2025090205.png" alt="">
+<img src="/personal-website/images/2025090207.png" alt="">
+<img src="/personal-website/images/2025090208.png" alt="">
+<img src="/personal-website/images/2025090209.png" alt="">
+Our backtest reveals several key insights:</p>
+<ul>
+<li>Win Rate: 61.7% of trades profitable out of 49. Needed win rate to surpass the SP is about 55%</li>
+<li>Sharpe Ratio: 2.887 (annualized). Strong results, considering over 2.0</li>
+<li>Maximum Drawdown: -2.53%. Coupled with the sharpe ratio strategy shows a strong risk adjusted return.</li>
+</ul>
+<p>The strategy shows promise in capturing mean-reversion opportunities while maintaining relatively low risk through its market-neutral approach.</p>
+<h2 id="7-next-steps--future-improvements">7. Next Steps &amp; Future Improvements</h2>
+<p>This is one in many blogs to come where I&rsquo;m going to be testing differente pairs trading approaches.
+The current road map is as follows:</p>
+<p>For Signal Generation models:</p>
+<ul>
+<li><strong>Rolling Window Cointegration (Current Method / CHECK)</strong>
+<ul>
+<li>Uses a rolling window to detect cointegration dynamically.</li>
+<li><strong>Strengths:</strong> Adapts to changing market conditions.</li>
+<li><strong>Weaknesses:</strong> May overfit to recent data.</li>
+</ul>
+</li>
+<li><strong>Static Cointegration (No Rolling Window)</strong>
+<ul>
+<li>Computes a single hedge ratio and cointegration test at the start.</li>
+<li><strong>Strengths:</strong> Simpler, stable over time.</li>
+<li><strong>Weaknesses:</strong> Fails to adapt if market structure changes.</li>
+</ul>
+</li>
+<li><strong>Simple Hedge Ratio (a/b)</strong>
+<ul>
+<li>Uses a static ratio of the two asset prices.</li>
+<li><strong>Strengths:</strong> Very simple, no statistical tests needed.</li>
+<li><strong>Weaknesses:</strong> Doesn&rsquo;t account for drift or changing correlation.</li>
+</ul>
+</li>
+<li><strong>Kalman Filter for Dynamic Hedge Ratio</strong>
+<ul>
+<li>Uses a state-space model to estimate the hedge ratio in real-time.</li>
+<li><strong>Strengths:</strong> Captures dynamic relationships between assets.</li>
+<li><strong>Weaknesses:</strong> More complex and computationally expensive.
+Comparison methodology
+Run backtests for each method on the same dataset and compare:</li>
+</ul>
+</li>
+<li>Sharpe Ratio</li>
+<li>Win Rate</li>
+<li>Maximum Drawdown</li>
+<li>CAGR</li>
+<li>Consistency and stability of signals over time</li>
+</ul>
+<p>But, as you will see if you experiment with the seed, returns are too volatile because there is no risk management aded. That is, the last bullet point, signals that should be consistent in capturing the spread differences and the risk management module should aim to ensure consistent returns.</p>
+<p>On the <strong>risk management techniques</strong> to-do list are:</p>
+<ol>
+<li><strong>Stop Loss / Take Profit</strong>
+<ul>
+<li>Defining levels to exit trades based on a multiple of spread volatility.</li>
+<li>Example: Stop loss at <code>2 * rolling_sd(spread)</code>, take profit at <code>1.5 * rolling_sd(spread)</code>.</li>
+</ul>
+</li>
+<li>Volatility modeling
+<ul>
+<li>Using GARCH family based models to forecast spread volatility</li>
+</ul>
+</li>
+<li><strong>Value at Risk (VaR) &amp; Conditional VaR (CVaR)</strong>
+<ul>
+<li>Estimate the potential downside risk at a given confidence level.</li>
+<li>Use <strong>historical simulation</strong> or <strong>Monte Carlo methods</strong> to compute VaR.</li>
+</ul>
+</li>
+<li><strong>Expected Shortfall (ES)</strong>
+<ul>
+<li>Similar to CVaR, but focuses on the average loss in the worst-case scenario.</li>
+<li>Helps refine position sizing to avoid catastrophic losses.</li>
+</ul>
+</li>
+<li><strong>Dynamic Position Sizing</strong>
+<ul>
+<li>Adjust position size based on volatility (e.g., smaller position when volatility is high).</li>
+<li>Example: <code>Position = k / rolling_sd(spread)</code>.
+Testing methodology</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>Backtesting the strategy with and without risk management.</li>
+<li>Trade visualization: distributions, max losses, and profitability improvements.</li>
+</ul>
+<h3 id="other-thoughts">Other thoughts</h3>
+<h4 id="refining-cointegration-testing">Refining Cointegration Testing</h4>
+<p>The Johansen test offers a more robust approach for testing cointegration, particularly useful when working with multiple pairs:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(urca)
+</span></span><span style="display:flex;"><span>johansen_test <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">ca.jo</span>(<span style="color:#a6e22e">data.frame</span>(price_A, price_B), type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;trace&#34;</span>, K <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+</span></span></code></pre></div><h4 id="enhancing-signal-filtering">Enhancing Signal Filtering</h4>
+<p>Volatility filtering can help avoid false signals during turbulent markets:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>volatility_filter <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(data, vol_threshold <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.02</span>) {
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">%&gt;%</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">mutate</span>(
+</span></span><span style="display:flex;"><span>            rolling_vol <span style="color:#f92672">=</span> <span style="color:#a6e22e">runSD</span>(ret_A, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>),
+</span></span><span style="display:flex;"><span>            signal <span style="color:#f92672">=</span> <span style="color:#a6e22e">if_else</span>(rolling_vol <span style="color:#f92672">&gt;</span> vol_threshold, <span style="color:#ae81ff">0</span>, signal)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="portfolio-optimization">Portfolio Optimization</h4>
+<p>Dynamic capital allocation based on signal strength:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>position_sizing <span style="color:#f92672">&lt;-</span> <span style="color:#66d9ef">function</span>(zscore, max_position <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">pmin</span>(<span style="color:#a6e22e">abs</span>(zscore) <span style="color:#f92672">/</span> <span style="color:#ae81ff">2</span>, max_position) <span style="color:#f92672">*</span> <span style="color:#a6e22e">sign</span>(zscore)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="real-world-implementation">Real-World Implementation</h4>
+<p>For live trading, we can fetch data using the Yahoo Finance API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(quantmod)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getSymbols</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;GOOG&#34;</span>, <span style="color:#e6db74">&#34;SPY&#34;</span>), from <span style="color:#f92672">=</span> <span style="color:#a6e22e">Sys.Date</span>() <span style="color:#f92672">-</span> <span style="color:#ae81ff">365</span>)
+</span></span></code></pre></div><h2 id="8-conclusion">8. Conclusion</h2>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<p>Cointegration-based pairs trading offers a robust framework for systematic trading:</p>
+<ul>
+<li>Statistical foundation ensures disciplined execution</li>
+<li>Market-neutral approach reduces systematic risk</li>
+<li>Adaptable methodology suits changing market conditions</li>
+</ul>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>Success in pairs trading requires:</p>
+<ul>
+<li>Rigorous statistical testing</li>
+<li>Careful risk management</li>
+<li>Continuous strategy refinement</li>
+<li>Infrastructure for efficient execution</li>
+</ul>
+<p>The approach presented here serves as a foundation for developing more sophisticated trading strategies. By combining statistical rigor with practical implementation considerations, we can build robust trading systems that capitalize on market inefficiencies while managing risk effectively.</p>
+<h2 id="bonus-full-r-code--github-repository">Bonus: Full R Code &amp; GitHub Repository</h2>
+<p>The complete code for this implementation is available on GitHub:</p>
+<p>Key files include:</p>
+<ul>
+<li><code>pairs_trading.R</code>: Entry point, main strategy implementation</li>
+<li><code>backtest_engine.R</code>: Backtesting functions</li>
+<li><code>stat_tests.R</code>: Contains the rolling cointegration function</li>
+<li><code>data_wrangling.R</code>: Helper functions to tidy the data</li>
+<li><code>portfolio_analytics.R</code>: Portfolio analysis functions</li>
+<li><code>visualization.R</code>: Plotting functions</li>
+<li><code>data_generation.R</code>: Synthetic data generation</li>
+</ul>
+<p>We welcome community contributions and feedback to improve the strategy further.
+Happy trading! 📈</p>
+
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>
