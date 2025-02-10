@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+<article class="post-page">
+    <h1>A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
+    <p>  Feb 10, 2025 </p>
+    <div class="content">
+        <h1 id="a-primer-into-risk-management-with-r-analyzing-var-and-cvar-with-monte-carlo-simulations">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Risk management is a crucial aspect of financial modeling, and one of the key metrics used to measure risk is <strong>Value at Risk (VaR)</strong>. In this project, we explore different approaches to computing VaR, including <strong>Historical VaR, Parametric VaR, and Cornish-Fisher VaR</strong>, as well as <strong>Conditional VaR (CVaR)</strong>. Additionally, we compare these risk measures across different shock distributions using <strong>Monte Carlo simulations</strong>.</p>
+<h2 id="step-1-simulating-historical-price-data">Step 1: Simulating Historical Price Data</h2>
+<p>To analyze risk, we first generate synthetic historical price data using a <strong>Geometric Brownian Motion (GBM)</strong> model with normal shocks. The resulting price series is converted into an <code>xts</code> object for time series analysis.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Generating synthetic historical data from a GBM with normal shocks</span>
+</span></span><span style="display:flex;"><span>historical_data <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">simulate_gbm_with_shocks</span>(S0 <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>, drift <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>, sigma <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.2</span>, T <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, N <span style="color:#f92672">=</span> <span style="color:#ae81ff">252</span>, distribution <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;std_normal&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert to xts object</span>
+</span></span><span style="display:flex;"><span>dates <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#a6e22e">as.Date</span>(<span style="color:#e6db74">&#34;2023-01-01&#34;</span>), by <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;day&#34;</span>, length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">253</span>)
+</span></span><span style="display:flex;"><span>historical_xts <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">xts</span>(historical_data, order.by <span style="color:#f92672">=</span> dates)
+</span></span></code></pre></div><h2 id="step-2-computing-historical-var">Step 2: Computing Historical VaR</h2>
+<p>Historical VaR is calculated by analyzing the empirical distribution of daily log returns.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>returns <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">diff</span>(<span style="color:#a6e22e">log</span>(historical_xts))[<span style="color:#ae81ff">-1</span>]
+</span></span><span style="display:flex;"><span>VaR_95 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quantile</span>(returns, probs <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>)
+</span></span><span style="display:flex;"><span>VaR_99 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quantile</span>(returns, probs <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.01</span>)
+</span></span></code></pre></div><h2 id="step-3-parametric-var">Step 3: Parametric VaR</h2>
+<p>Parametric VaR assumes that returns follow a normal distribution, allowing us to use the mean and standard deviation to estimate risk.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>mean_return <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(returns)
+</span></span><span style="display:flex;"><span>sd_return <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sd</span>(returns)
+</span></span><span style="display:flex;"><span>parametric_VaR_95 <span style="color:#f92672">&lt;-</span> mean_return <span style="color:#f92672">+</span> sd_return <span style="color:#f92672">*</span> <span style="color:#a6e22e">qnorm</span>(<span style="color:#ae81ff">0.05</span>)
+</span></span><span style="display:flex;"><span>parametric_VaR_99 <span style="color:#f92672">&lt;-</span> mean_return <span style="color:#f92672">+</span> sd_return <span style="color:#f92672">*</span> <span style="color:#a6e22e">qnorm</span>(<span style="color:#ae81ff">0.01</span>)
+</span></span></code></pre></div><h2 id="step-4-computing-cvar-expected-shortfall">Step 4: Computing CVaR (Expected Shortfall)</h2>
+<p>Conditional VaR (CVaR) provides an expectation of losses beyond the VaR threshold.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>CVaR_95 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(returns[returns <span style="color:#f92672">&lt;=</span> VaR_95])
+</span></span><span style="display:flex;"><span>CVaR_99 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">mean</span>(returns[returns <span style="color:#f92672">&lt;=</span> VaR_99])
+</span></span></code></pre></div><h2 id="step-5-cornish-fisher-expansion">Step 5: Cornish-Fisher Expansion</h2>
+<p>The Cornish-Fisher expansion adjusts VaR estimates by incorporating skewness and kurtosis.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>skewness <span style="color:#f92672">&lt;-</span> PerformanceAnalytics<span style="color:#f92672">::</span><span style="color:#a6e22e">skewness</span>(returns)
+</span></span><span style="display:flex;"><span>kurtosis <span style="color:#f92672">&lt;-</span> PerformanceAnalytics<span style="color:#f92672">::</span><span style="color:#a6e22e">kurtosis</span>(returns)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>z_95 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">qnorm</span>(<span style="color:#ae81ff">0.05</span>)
+</span></span><span style="display:flex;"><span>z_99 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">qnorm</span>(<span style="color:#ae81ff">0.01</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>adjusted_z_95 <span style="color:#f92672">&lt;-</span> z_95 <span style="color:#f92672">+</span> (skewness <span style="color:#f92672">/</span> <span style="color:#ae81ff">6</span>) <span style="color:#f92672">*</span> (z_95^2 <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">+</span> (kurtosis <span style="color:#f92672">/</span> <span style="color:#ae81ff">24</span>) <span style="color:#f92672">*</span> (z_95^3 <span style="color:#f92672">-</span> <span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> z_95)
+</span></span><span style="display:flex;"><span>CF_VaR_95 <span style="color:#f92672">&lt;-</span> mean_return <span style="color:#f92672">+</span> sd_return <span style="color:#f92672">*</span> adjusted_z_95
+</span></span></code></pre></div><h2 id="step-6-scenario-analysis-across-different-distributions">Step 6: Scenario Analysis Across Different Distributions</h2>
+<p>We expand our analysis by simulating returns from different shock distributions:</p>
+<ul>
+<li><strong>Standard Normal</strong></li>
+<li><strong>Skewed Normal</strong></li>
+<li><strong>Heavy-Tailed Normal</strong></li>
+<li><strong>t-Distribution</strong></li>
+<li><strong>Skewed t-Distribution</strong></li>
+</ul>
+<p>Each scenario is analyzed using the same risk measures.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>scenarios <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">list</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>(distribution <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;std_normal&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>(distribution <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;skewed_normal&#34;</span>, alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>(distribution <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;heavy_tail_normal&#34;</span>, df <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">list</span>(distribution <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;std_t&#34;</span>, df <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>results_list <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">map</span>(scenarios, <span style="color:#f92672">~</span> <span style="color:#a6e22e">do.call</span>(analyze_shock_scenario, .))
+</span></span><span style="display:flex;"><span>results_df <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">bind_rows</span>(results_list)
+</span></span></code></pre></div><h2 id="step-7-monte-carlo-simulations">Step 7: Monte Carlo Simulations</h2>
+<p>We run <strong>1,000 Monte Carlo simulations</strong> to test the robustness of our risk measures across different distributions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span>monte_carlo_results <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">future_map</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1000</span>, <span style="color:#f92672">~</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">map</span>(scenarios, <span style="color:#f92672">~</span> <span style="color:#a6e22e">do.call</span>(analyze_shock_scenario, <span style="color:#a6e22e">c</span>(., seed <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">1000000</span>)))
+</span></span><span style="display:flex;"><span>}, .progress <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</span></span></code></pre></div><h2 id="step-8-visualizing-results">Step 8: Visualizing Results</h2>
+<p>We use <strong>ggplot2</strong> to visualize the comparison of different risk measures.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">ggplot</span>(results_df, <span style="color:#a6e22e">aes</span>(x <span style="color:#f92672">=</span> Distribution, y <span style="color:#f92672">=</span> Value, fill <span style="color:#f92672">=</span> Metric)) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">geom_bar</span>(stat <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;identity&#34;</span>, position <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;dodge&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">labs</span>(title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Comparison of Risk Measures&#34;</span>, x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Shock Distribution&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Value&#34;</span>) <span style="color:#f92672">+</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme_minimal</span>()
+</span></span></code></pre></div><p><img src="/personal-website/images/20250210182156.png" alt=""></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>This project demonstrates how to systematically analyze financial risk using different VaR methodologies and Monte Carlo simulations. By incorporating various shock distributions, we gain deeper insights into the robustness of risk metrics under different market conditions.</p>
+
+    </div>
+</article>
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>

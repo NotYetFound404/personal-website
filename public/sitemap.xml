@@ -2,19 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</loc>
-    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
+    <loc>http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/posts/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/</loc>
+    <lastmod>2025-02-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/projects/cointegration-based-pairs-trading/</loc>
-    <lastmod>2025-02-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/personal-website/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/personal-website/posts/2025-05-02-how-i-built-this-website/</loc>

@@ -63,17 +63,24 @@
   .project-hero__image {
     position: relative;
     width: 100%;
-    aspect-ratio: 16/9;
+    height: auto; /* Ensures it resizes dynamically */
+    max-height: 600px; /* Prevents excessive height */
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%; /* Adjust to fit layout */
+    margin: 0 auto; /* Centers the image */
   }
+  
   
   .project-hero__image img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100%; /* Prevents vertical overflow */
+    object-fit: contain; /* Ensures the full image is visible */
     object-position: center;
   }
-  
   /* Responsive design */
   @media screen and (max-width: 768px) {
     .project-hero {

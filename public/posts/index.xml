@@ -6,8 +6,15 @@
     <description>Recent content in Blog on My New Hugo Site</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 09 Feb 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 10 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/personal-website/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</title>
+      <link>http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/</link>
+      <pubDate>Mon, 10 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/</guid>
+      <description>&lt;h1 id=&#34;a-primer-into-risk-management-with-r-analyzing-var-and-cvar-with-monte-carlo-simulations&#34;&gt;A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations&lt;/h1&gt;&#xA;&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;Risk management is a crucial aspect of financial modeling, and one of the key metrics used to measure risk is &lt;strong&gt;Value at Risk (VaR)&lt;/strong&gt;. In this project, we explore different approaches to computing VaR, including &lt;strong&gt;Historical VaR, Parametric VaR, and Cornish-Fisher VaR&lt;/strong&gt;, as well as &lt;strong&gt;Conditional VaR (CVaR)&lt;/strong&gt;. Additionally, we compare these risk measures across different shock distributions using &lt;strong&gt;Monte Carlo simulations&lt;/strong&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</title>
       <link>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</link>
