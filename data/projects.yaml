@@ -3,7 +3,14 @@ projects:
     number: "01"
     description: "A quantitative strategy to exploit mean-reverting opportunities."
     image: "/personal-website/images/2025090203.png"
-    link: "/personal-website/projects/Cointegration-Based-Pairs-Trading/"
+    link: "/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/"
+  - title: "Mortgage Backed Securities (MBS) Valuation"
+    number: "02"
+    description: "Modelling and pricing of a MBS with synthetic mortgage pool generation and stress analysis"
+    image: "/personal-website/images/20250209221951.png"
+    link: "/personal-website/posts/2025-09-02-mbs-valuation-primer/"
+  
+  
   # - title: "Personal Finance Management App"
   #   number: "01"
   #   description: "Developed a personal finance app to track expenses, categorize spending, and visualize financial health over time."

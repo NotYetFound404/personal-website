@@ -9,6 +9,13 @@
     <lastBuildDate>Sun, 09 Feb 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/personal-website/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</title>
+      <link>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</link>
+      <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;&#xA;&lt;p&gt;Mortgage-Backed Securities (MBS) are critical financial instruments that pool mortgages and distribute their cash flows to different tranches of investors. In this project, we developed an automated framework for pricing and stress-testing an MBS under different economic scenarios. Our goal was to dynamically model default and prepayment risks, discount cash flows using a yield curve, and determine fair market prices for the different tranches.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Exploring Cointegration (Pairs Trading)</title>
       <link>http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/</link>
       <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+<article class="post-page">
+    <h1>A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</h1>
+    <p>  Feb 9, 2025 </p>
+    <div class="content">
+        <p><strong>Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</strong></p>
+<h3 id="introduction">Introduction</h3>
+<p>Mortgage-Backed Securities (MBS) are critical financial instruments that pool mortgages and distribute their cash flows to different tranches of investors. In this project, we developed an automated framework for pricing and stress-testing an MBS under different economic scenarios. Our goal was to dynamically model default and prepayment risks, discount cash flows using a yield curve, and determine fair market prices for the different tranches.</p>
+<h3 id="key-components-of-the-model">Key Components of the Model</h3>
+<ol>
+<li><strong>Synthetic Mortgage Pool Generation</strong>
+<ul>
+<li>Created a structured mortgage pool divided into three SES-based tranches: Senior (A), Mezzanine (B), and Junior (C).</li>
+<li>Each tranche has distinct loan characteristics, interest rates, default, and prepayment assumptions.</li>
+</ul>
+</li>
+<li><strong>Sensitivity Analysis &amp; Stress Testing</strong>
+<ul>
+<li>Applied a range of shocks to SES_A default rates and propagated their effects on SES_B and SES_C using deterministic and stochastic functions.</li>
+<li>Ensured logical propagation of prepayment rates, with constraints to maintain values within [0,1].</li>
+</ul>
+</li>
+<li><strong>Cash Flow Calculation &amp; Discounting</strong>
+<ul>
+<li>Computed expected cash flows based on default and prepayment-adjusted loan payments.</li>
+<li>Discounted cash flows using a yield curve spanning maturities from 1 to 30 years.</li>
+</ul>
+</li>
+<li><strong>Risk Metrics Computation</strong>
+<ul>
+<li><strong>Present Value (PV) of Cash Flows</strong>: The discounted sum of expected future cash flows.</li>
+<li><strong>Weighted Average Life (WAL)</strong>: The duration-weighted expected cash flow measure.</li>
+<li><strong>Effective Yield</strong>: The implied return on investment for each tranche.</li>
+<li><strong>Fair Market Price</strong>: Computed using a risk-adjusted yield for each tranche.</li>
+</ul>
+</li>
+</ol>
+<h3 id="insights-from-the-model">Insights from the Model</h3>
+<p>By systematically varying default shocks, we observed that:</p>
+<ul>
+<li>Higher SES_A default rates increased risk for all tranches, especially SES_C.</li>
+<li>The fair market price of tranches declined as shocks intensified, reflecting increased investor risk.</li>
+<li>Senior tranches remained relatively stable due to lower default exposure, while Junior tranches were highly sensitive to shocks.</li>
+</ul>
+<h3 id="implications-for-mbs-pricing">Implications for MBS Pricing</h3>
+<p>The computed fair market price for each tranche allows the bank to determine optimal selling prices:</p>
+<ul>
+<li><strong>Tranche A (Senior)</strong>: Lower risk, priced closer to PV of cash flows with a small risk premium.</li>
+<li><strong>Tranche B (Mezzanine)</strong>: Moderate risk, priced with a higher discount.</li>
+<li><strong>Tranche C (Junior)</strong>: High-risk investors demand significant discounts.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>This project demonstrates how an automated framework can enhance MBS pricing, risk assessment, and stress testing. By integrating realistic yield curves and dynamic default propagation, our model provides valuable insights for structuring and selling MBS tranches under varying market conditions.</p>
+<p><img src="/personal-website/images/20250209221951.png" alt=""></p>
+
+    </div>
+</article>
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>
