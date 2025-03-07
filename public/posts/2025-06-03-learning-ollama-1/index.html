@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/personal-website/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=personal-website/livereload" data-no-instant defer></script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learning Ollama #1</title>
+
+<link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
+</head>
+<body>
+    <nav>
+    <ul>
+        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
+        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+    </ul>
+</nav>
+
+
+    
+    
+<article class="post-page">
+    <h1>Learning Ollama #1</h1>
+    <p>  Mar 6, 2025 </p>
+    <div class="content">
+        <p>I recently explored <a href="https://ollama.com/">Ollama</a> to build a simple AI-powered grocery list categorizer. This was my first time using Ollama, and I wanted to experiment with how it could process and organize text data locally.</p>
+<h2 id="the-goal-">The Goal 🎯</h2>
+<p>The idea was straightforward:</p>
+<ul>
+<li>
+<p>Read a list of grocery items from a file.</p>
+</li>
+<li>
+<p>Use Ollama to categorize the items into groups like Produce, Dairy, Meat, etc.</p>
+</li>
+<li>
+<p>Sort them alphabetically within each category.</p>
+</li>
+<li>
+<p>Save the organized list to a new file.</p>
+</li>
+</ul>
+<h2 id="the-implementation-">The Implementation 🛠️</h2>
+<p>I wrote a small Python script that loads a grocery list from <code>grocery_list.txt</code>, feeds it into Ollama, and writes the structured output to <code>outputed_list.txt</code>. Here’s a breakdown of the steps:</p>
+<ol>
+<li>
+<p><strong>Check if the input file exists</strong> to avoid errors.</p>
+</li>
+<li>
+<p><strong>Read grocery items</strong> from the file.</p>
+</li>
+<li>
+<p><strong>Generate a structured response</strong> using the Ollama API.</p>
+</li>
+<li>
+<p><strong>Save the AI-generated output</strong> to a new file.</p>
+</li>
+</ol>
+<p>Here’s a snippet of the core logic:</p>
+<pre tabindex="0"><code>import ollama
+import os
+
+MODEL = &#34;llama3.2&#34;
+INPUT_FILE = &#34;./data/grocery_list.txt&#34;
+OUTPUT_FILE = &#34;./data/outputed_list.txt&#34;
+
+if not os.path.exists(INPUT_FILE):
+    print(&#34;Error: Input file does not exist.&#34;)
+    exit(1)
+
+with open(INPUT_FILE, &#34;r&#34;) as f:
+    items = f.read().strip()
+
+prompt = f&#34;&#34;&#34;
+You are an assistant that categorizes and sorts grocery items.
+Here is a list of grocery items:
+{items}
+
+Please:
+1. Categorize these items into appropriate categories (e.g., Produce, Dairy, Meat, etc.).
+2. Sort the items alphabetically within each category.
+3. Present the categorized list in a clear format.
+&#34;&#34;&#34;
+
+try:
+    response = ollama.generate(model=MODEL, prompt=prompt)
+    categorized_list = response.get(&#34;response&#34;, &#34;&#34;)
+    
+    with open(OUTPUT_FILE, &#34;w&#34;) as f:
+        f.write(categorized_list.strip())
+    
+    print(&#34;Categorization completed successfully!&#34;)
+except Exception as e:
+    print(f&#34;Error: {e}&#34;)
+</code></pre><h2 id="input-file">Input file</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Eggs
+</span></span><span style="display:flex;"><span>Bread
+</span></span><span style="display:flex;"><span>Apples
+</span></span><span style="display:flex;"><span>Chicken breast
+</span></span><span style="display:flex;"><span>Rice
+</span></span><span style="display:flex;"><span>Carrots
+</span></span><span style="display:flex;"><span>Milk 
+</span></span><span style="display:flex;"><span>Cheese
+</span></span><span style="display:flex;"><span>Olive oil
+</span></span><span style="display:flex;"><span>Coffee
+</span></span></code></pre></div><h2 id="output-file">Output file</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span>Here is the categorized and sorted list of grocery items:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Bakery**</span>
+</span></span><span style="display:flex;"><span>� Bread
+</span></span><span style="display:flex;"><span>� Cheese
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Beverages**</span>
+</span></span><span style="display:flex;"><span>� Coffee
+</span></span><span style="display:flex;"><span>� Milk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Dairy**</span>
+</span></span><span style="display:flex;"><span>� Cheese
+</span></span><span style="display:flex;"><span>� Eggs
+</span></span><span style="display:flex;"><span>� Milk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Meat**</span>
+</span></span><span style="display:flex;"><span>� Chicken breast
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Oils and Condiments**</span>
+</span></span><span style="display:flex;"><span>� Olive oil
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="font-weight:bold">**Produce**</span>
+</span></span><span style="display:flex;"><span>� Apples
+</span></span><span style="display:flex;"><span>� Carrots
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Note: I&#39;ve categorized the items into general categories, but some items (like olive oil) could fit into multiple categories. If you&#39;d like me to re-categorize or add more specific subcategories, please let me know!
+</span></span></code></pre></div><h2 id="the-experience-">The Experience 🚀</h2>
+<p>Using Ollama for the first time was surprisingly easy! It runs locally, so there’s no need for an external API key, and responses are generated quickly. The model handled the task well, neatly categorizing the list with minimal effort on my part.</p>
+<h2 id="whats-next-">What’s Next? 🔥</h2>
+<p>Now that I have a working script, I’m thinking of:</p>
+<ul>
+<li>
+<p>Extending it to handle larger datasets.</p>
+</li>
+<li>
+<p>Experimenting with different AI models for better categorization.</p>
+</li>
+<li>
+<p>Building a small web UI to make it user-friendly.</p>
+</li>
+</ul>
+<p>This was a fun and simple way to get started with Ollama, and I’m excited to explore more! Have you tried Ollama yet? Let me know what you think. 😊</p>
+
+    </div>
+</article>
+
+    
+ <footer>
+    © 2025 Cesar Garcia
+    <br>
+    Powered by <a href="https://gohugo.io/">Hugo</a>
+ </footer>
+
+</body>
+</html>
