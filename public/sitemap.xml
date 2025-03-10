@@ -2,61 +2,67 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/personal-website/areas/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/areas/</loc>
     <lastmod>2025-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/art/art/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/art/</loc>
     <lastmod>2025-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/art/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/book-reviews/</loc>
     <lastmod>2025-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/</loc>
     <lastmod>2025-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/areas/finance/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/book-reviews/camus/</loc>
     <lastmod>2025-03-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/art/art/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://notyetfound404.github.io/personal-website/areas/finance/</loc>
+    <lastmod>2025-03-09T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://notyetfound404.github.io/personal-website/posts/</loc>
     <lastmod>2025-03-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-06-03-learning-ollama-1/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-06-03-learning-ollama-1/</loc>
     <lastmod>2025-03-06T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-10-02-risk-management-primer/</loc>
     <lastmod>2025-02-10T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-09-02-mbs-valuation-primer/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/projects/project-1/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/projects/project-1/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-05-02-how-i-built-this-website/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-05-02-how-i-built-this-website/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/projects/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/projects/</loc>
     <lastmod>2025-02-09T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-02-03-how-i-built-this-website/</loc>
     <lastmod>2025-02-03T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/</loc>
     <lastmod>2025-02-02T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-01-test-theme/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-02-01-test-theme/</loc>
     <lastmod>2025-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/posts/2025-02-01-how-i-built-this-website/</loc>
     <lastmod>2025-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/personal-website/about/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/about/</loc>
   </url><url>
-    <loc>http://localhost:1313/personal-website/categories/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/personal-website/tags/</loc>
+    <loc>https://notyetfound404.github.io/personal-website/tags/</loc>
   </url>
 </urlset>
