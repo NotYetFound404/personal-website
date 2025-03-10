@@ -1,5 +1,5 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ .Page.Title}}</title>
-{{ $styles := resources.Get "sass/main.scss" | css.Sass | resources.Minify }}
+{{ $styles := resources.Get "sass/main.scss" | css.Sass}}
 <link rel="stylesheet" href="{{ $styles.Permalink }}" media="screen">
