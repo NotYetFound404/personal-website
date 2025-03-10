@@ -1,35 +1,27 @@
-@font-face {
-  font-family: 'New York';
-  src: url('/fonts/NewYork/NewYork.ttf') format('truetype'),
-       url('/fonts/NewYork/NewYorkExtraLarge-Black.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
+// main.scss - Entry point
 
-@font-face {
-  font-family: 'New York';
-  src: url('/fonts/NewYork/NewYorkExtraLarge-Black.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
+// Core
+@import "variables";
+@import "mixins";
+@import "base";
+@import "layout";
 
-/*General*/
-body {
-  margin: 0 auto;
-  background-color: #f9f9f9;
-}
+// Components (reusable across pages)
+@import "components/typography";
+@import "components/buttons";
+@import "components/card";
+@import "components/grid";
+@import "components/navbar";
+@import "components/footer";
+@import "components/section";
+@import "components/animations";
 
+// Pages/Sections
+@import "pages/about";
+@import "pages/blog";
+@import "pages/projects";
 
-/* Importar css de cada seccion*/
-@import "post";
-@import "home/hero";
-@import "home/minimal-project";
-@import "home/projects-intro";
-@import "home/contact-me";
-@import "navbar";
-@import "footer";
-@import "about";
-
-@import "blog";
-
-@import "projects";
+// Home page components (specific to home page)
+@import "pages/home/hero";
+@import "pages/home/projects-intro";
+@import "pages/home/minimal-project";

@@ -1,0 +1,70 @@
+// _variables.scss
+
+// Color System
+$colors: (
+  "primary": #08327d,    // Blue
+  "secondary": #558a86,  // Cyan
+  "light": #fbfbfb,      // White
+  "dark": #0f0a01,       // Black
+  "background": #f9f9f9, // Bone
+  "text": #444,          // Grey Dark
+  "text-light": #666     // Grey
+);
+
+@function color($key) {
+  @return map-get($colors, $key);
+}
+
+// Legacy variable names (for backward compatibility)
+$color-blue: color("primary");
+$color-cyan: color("secondary");
+$color-white: color("light");
+$color-black: color("dark");
+$color-bone: color("background");
+$color-grey-dark: color("text");
+$color-grey: color("text-light");
+
+// Typography
+$fonts: (
+  "primary": ("Helvetica Neue", Helvetica, Arial, sans-serif),
+  "secondary": ("New York", serif)
+);
+
+@function font($key) {
+  @return map-get($fonts, $key);
+}
+
+$font-primary: font("primary");
+$font-secondary: font("secondary");
+
+// Font Sizes - Using a modular scale
+$font-size-base: 16px;
+$font-size-sm: 14px;
+$font-size-lg: 18px;
+$font-size-xl: 24px;
+$font-size-2xl: 32px;
+
+// Spacing - Using a modular scale
+$spacing-unit: 8px;
+$spacing-xs: $spacing-unit;
+$spacing-sm: $spacing-unit * 1.5;  // 12px
+$spacing-md: $spacing-unit * 2;    // 16px
+$spacing-lg: $spacing-unit * 3;    // 24px
+$spacing-xl: $spacing-unit * 4;    // 32px
+$spacing-2xl: $spacing-unit * 6;   // 48px
+
+// Border Radius
+$border-radius-sm: 4px;
+$border-radius: 8px;
+$border-radius-lg: 12px;
+
+// Breakpoints
+$breakpoints: (
+  "small": 600px,
+  "medium": 1024px,
+  "large": 1440px
+);
+
+@function breakpoint($key) {
+  @return map-get($breakpoints, $key);
+}

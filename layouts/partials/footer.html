@@ -1,9 +1,4 @@
-{{ with .Params.hide_footer }}
- <!-- No footer here! -->
-{{ else }}
- <footer>
-    © {{ now.Year }} {{ .Site.Params.name }}
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
-{{ end }}
+<footer class="site-footer">
+   <p>© {{ now.Year }} {{ .Site.Params.name }}</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>

@@ -1,0 +1,45 @@
+// components/_card.scss
+@mixin card-base {
+  background: $color-white;
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.card {
+  @include card-base;
+  
+  &__title {
+    font-size: $font-size-xl;
+    color: $color-blue;
+    font-weight: bold;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__date {
+    font-size: 0.9rem;
+    color: $color-grey;
+    margin-bottom: $spacing-sm;
+  }
+
+  &__summary, &__content {
+    font-size: $font-size-base;
+    color: $color-grey-dark;
+    line-height: 1.6;
+  }
+}
+
+// Usage examples
+.post-card {
+  @extend .card;
+}
+
+.project-card {
+  @extend .card;
+}

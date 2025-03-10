@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="project-list">
+    <header class="section-header">
+        <h1 class="section-title">books</h1>
+    </header>
+    <div class="project-grid">
+        {{ range .Pages }}
+            {{ partial "project-card.html" . }}
+        {{ end }}
+    </div>
+</section>
+{{ end }}

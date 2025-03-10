@@ -1,0 +1,36 @@
+// components/_grid.scss
+@mixin grid-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: $spacing-xl $spacing-md;
+  }
+  
+  @mixin grid-layout($min-width: 320px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+    gap: $spacing-lg;
+    padding-top: $spacing-md;
+  }
+  
+  .grid {
+    &-container {
+      @include grid-container;
+    }
+    
+    &-layout {
+      @include grid-layout;
+      
+      &--small {
+        @include grid-layout(250px);
+      }
+    }
+  }
+  
+  // Usage:
+  .post-list, .project-list {
+    @extend .grid-container;
+  }
+  
+  .post-grid, .project-grid {
+    @extend .grid-layout;
+  }

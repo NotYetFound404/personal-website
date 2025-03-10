@@ -1,0 +1,93 @@
+// components/_footer.scss
+.footer {
+  background: color("dark");
+  color: color("light");
+  padding: $spacing-lg;
+  
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-lg;
+  }
+  
+  &__section {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__title {
+    color: color("light");
+    font-size: $font-size-lg;
+    font-weight: bold;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__nav {
+    list-style: none;
+    padding: 0;
+    
+    li {
+      margin-bottom: $spacing-sm;
+    }
+  }
+  
+  &__link {
+    color: color("secondary");
+    text-decoration: none;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: darken(color("secondary"), 10%);
+      text-decoration: underline;
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: $spacing-md;
+    margin-top: $spacing-sm;
+    
+    a {
+      color: color("light");
+      font-size: $font-size-lg;
+      transition: color 0.3s ease;
+      
+      &:hover {
+        color: color("secondary");
+      }
+    }
+  }
+  
+  &__bottom {
+    width: 100%;
+    text-align: center;
+    padding-top: $spacing-md;
+    margin-top: $spacing-md;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: $font-size-sm;
+  }
+}
+
+@include respond-to(small) {
+  .footer {
+    text-align: center;
+    
+    &__container {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    &__section {
+      width: 100%;
+    }
+    
+    &__social {
+      justify-content: center;
+    }
+  }
+}

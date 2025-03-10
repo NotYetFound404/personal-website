@@ -8,22 +8,28 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/projects/> Projects </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
     </ul>
 </nav>
 
 
-    
-    
+
+
+    <main class="main-content">
+        
 <article class="post-page">
-    <h1>Learning Ollama #1</h1>
-    <p>  Mar 6, 2025 </p>
-    <div class="content">
+    <header class="post-header">
+        <h1 class="post-title">Learning Ollama #1</h1>
+        <p class="post-date">Mar 6, 2025</p>
+    </header>
+    <div class="post-content">
         <p>I recently explored <a href="https://ollama.com/">Ollama</a> to build a simple AI-powered grocery list categorizer. This was my first time using Ollama, and I wanted to experiment with how it could process and organize text data locally.</p>
 <h2 id="the-goal-">The Goal 🎯</h2>
 <p>The idea was straightforward:</p>
@@ -151,12 +157,13 @@ except Exception as e:
     </div>
 </article>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

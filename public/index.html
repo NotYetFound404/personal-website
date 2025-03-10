@@ -9,20 +9,25 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/projects/> Projects </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/art/" class="nav-link">art</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/book-reviews/" class="nav-link">book reviews</a> </li>
     </ul>
 </nav>
 
 
-    
-    
-<main class="home-page">
-    
+
+
+    <main class="main-content">
+        
+<main class="homepage">
     <section class="hero">
     <div class="hero__container">
         
@@ -30,14 +35,14 @@
             <h1>Hello, I'm Cesar</h1>
             <h2>Finance Student | Data Enthusiast | Quant Aspirant</h2>
             <p>
-                Passionate about quantitative finance, coding, and data-driven insights.
+                Passionate about Quantitative Finance, Coding, and Data-Driven Insights.
             </p>
-            <a href="#contact" class="btn">📩 Contact Me</a>
+            <a href="#contact" class="btn">contact me</a>
 
             
             <div class="hero__socials">
-                <a href="https://www.linkedin.com/in/cesar-garciaa/" target="_blank">🔗 LinkedIn</a>
-                <a href="http://github.com/NotYetFound404/" target="_blank">💻 GitHub</a>
+                <a href="https://www.linkedin.com/in/cesar-garciaa/" target="_blank"> LinkedIn</a>
+                <a href="http://github.com/NotYetFound404/" target="_blank"> GitHub</a>
             </div>
         </div>
 
@@ -49,25 +54,24 @@
 </section>
 
     <section class="projects-intro">
-    <h2>Selected Projects</h2>
-    <p>Here are some of the most interesting projects I've worked on.</p>
+    <h1>Selected Projects</h2>
+    <h2>Here are some of the most interesting projects I've worked on.</p>
 </section>
 
 
-    
     
 <section class="project-hero">
     <div class="project-hero__container">
       
       <a href="/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/" class="project-hero__info">
         <div class="project-hero__title-col">
-          <h2>Cointegration-Based Pairs Trading</h2>
+          <h1>Cointegration-Based Pairs Trading</h2>
         </div>
         <div class="project-hero__number-col">
-          <span>01</span>
+          <h1>01</span>
         </div>
         <div class="project-hero__description-col">
-          <p>A quantitative strategy to exploit mean-reverting opportunities.</p>
+          <h2>A quantitative strategy to exploit mean-reverting opportunities.</p>
         </div>
       </a>
   
@@ -83,13 +87,13 @@
       
       <a href="/personal-website/posts/2025-09-02-mbs-valuation-primer/" class="project-hero__info">
         <div class="project-hero__title-col">
-          <h2>Mortgage Backed Securities (MBS) Valuation</h2>
+          <h1>Mortgage Backed Securities (MBS) Valuation</h2>
         </div>
         <div class="project-hero__number-col">
-          <span>02</span>
+          <h1>02</span>
         </div>
         <div class="project-hero__description-col">
-          <p>Modelling and pricing of a MBS with synthetic mortgage pool generation and stress analysis</p>
+          <h2>Modelling and pricing of a MBS with synthetic mortgage pool generation and stress analysis</p>
         </div>
       </a>
   
@@ -105,13 +109,13 @@
       
       <a href="/personal-website/posts/2025-10-02-risk-management-primer/" class="project-hero__info">
         <div class="project-hero__title-col">
-          <h2>VaR &amp; CVaR Risk Analysis with Monte Carlo Simulations</h2>
+          <h1>VaR &amp; CVaR Risk Analysis with Monte Carlo Simulations</h2>
         </div>
         <div class="project-hero__number-col">
-          <span>03</span>
+          <h1>03</span>
         </div>
         <div class="project-hero__description-col">
-          <p>Comparing Historical, Parametric, and Cornish-Fisher VaR across different shock distributions with Monte Carlo simulations and rich visualizations.</p>
+          <h2>Comparing Historical, Parametric, and Cornish-Fisher VaR across different shock distributions with Monte Carlo simulations and rich visualizations.</p>
         </div>
       </a>
   
@@ -127,13 +131,13 @@
       
       <a href="/personal-website/projects/project-1/" class="project-hero__info">
         <div class="project-hero__title-col">
-          <h2>TEST PROJECT</h2>
+          <h1>TEST PROJECT</h2>
         </div>
         <div class="project-hero__number-col">
-          <span>03</span>
+          <h1>03</span>
         </div>
         <div class="project-hero__description-col">
-          <p>LOREM IPSUM</p>
+          <h2>LOREM IPSUM</p>
         </div>
       </a>
   
@@ -144,16 +148,15 @@
     </div>
 </section>
 
-    
-     
 </main>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

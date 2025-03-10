@@ -8,21 +8,28 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
     </ul>
 </nav>
 
 
-    
-    
+
+
+    <main class="main-content">
+        
 <article class="post-page">
-    <h1>How I built this website (v.1.0.2)</h1>
-    <p>  Feb 3, 2025 </p>
-    <div class="content">
+    <header class="post-header">
+        <h1 class="post-title">How I built this website (v.1.0.2)</h1>
+        <p class="post-date">Feb 3, 2025</p>
+    </header>
+    <div class="post-content">
         <p>Disclaimer:  &lt;10% AI written, &gt;90% AI proofread (uno con el otro jajaja), I jolted down some the main notes of this blog. I didn&rsquo;t allow me some time to re-estructure said notes in a <em>human™</em> matter. This one is also in spanish btw.</p>
 <h1 id="refactorización-y-estructuración-del-blog">Refactorización y Estructuración del Blog</h1>
 <p>En este post, comparto los cambios recientes que he realizado en la estructura y estilos de mi blog. El objetivo fue mejorar la organización del código, separar responsabilidades y preparar el terreno para futuras actualizaciones.</p>
@@ -84,12 +91,13 @@
     </div>
 </article>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

@@ -1,0 +1,90 @@
+// _mixins.scss
+
+// Responsive Breakpoints
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == small {
+    @media (max-width: breakpoint("small")) { @content; }
+  }
+  @if $breakpoint == medium {
+    @media (max-width: breakpoint("medium")) { @content; }
+  }
+  @if $breakpoint == large {
+    @media (max-width: breakpoint("large")) { @content; }
+  }
+}
+
+// Flexbox Centering
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Button Styling
+@mixin button($bg-color) {
+  background: $bg-color;
+  color: color("light");
+  padding: $spacing-sm $spacing-lg;
+  border-radius: $border-radius;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background 0.3s ease;
+
+  &:hover {
+    background: darken($bg-color, 10%);
+  }
+}
+
+// Card base styling
+@mixin card-base {
+  background: color("light");
+  padding: $spacing-lg;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Grid container
+@mixin grid-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: $spacing-xl $spacing-md;
+}
+
+// Grid layout
+@mixin grid-layout($min-width: 320px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: $spacing-lg;
+  padding-top: $spacing-md;
+}
+
+// Section padding
+@mixin section-padding($vertical: $spacing-xl, $horizontal: $spacing-md) {
+  padding: $vertical $horizontal;
+}
+
+// Animation
+@mixin animation($name, $duration: 0.9s, $timing: ease-out, $fill: forwards) {
+  animation: $name $duration $timing $fill;
+}
+
+// Truncate text with ellipsis
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Placeholder styling
+@mixin placeholder {
+  &::-webkit-input-placeholder { @content; }
+  &::-moz-placeholder { @content; }
+  &:-ms-input-placeholder { @content; }
+  &:-moz-placeholder { @content; }
+}

@@ -1,11 +1,7 @@
 {{ define "main" }}
-<main class="home-page">
-    <!-- Secciones de la Homepage -->
-    {{ partial "homepage/hero.html" . }}
-    {{ partial "homepage/projects-intro.html"}}
-    <!-- Projects section (change data to showcase differnet projects) -->
-    {{ partial "homepage/minimal-project.html"}}
-    <!-- contact me -->
-     <!-- {{ partial "homepage/contact-me.html"}} -->
+<main class="homepage">
+    {{ template  "homepage/hero.html" . }}
+    {{ template  "homepage/projects-intro.html" . }}
+    {{ template  "homepage/featured-projects.html" . }}
 </main>
-{{end}}
+{{ end }}

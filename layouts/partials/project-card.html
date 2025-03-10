@@ -1,0 +1,7 @@
+<div class="project-card">
+    <a href="{{ .Permalink }}" class="project-card__link">
+        <h2 class="project-card__name">{{ .Title }}</h2>
+        <p class="project-card__date">{{ .Date.Format "January 2, 2006" }}</p>
+        <p class="project-card__description">{{ .Params.description }}</p>
+    </a>
+</div>

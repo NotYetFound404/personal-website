@@ -1,0 +1,52 @@
+// _base.scss
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+// Base HTML elements
+body {
+  font-family: font("primary");
+  font-size: $font-size-base;
+  background-color: color("background");
+  color: color("dark");
+  line-height: 1.6;
+  padding-top: 60px; // Adjust according to navbar height
+}
+
+a {
+  text-decoration: none;
+  color: color("primary");
+
+  &:hover {
+    color: darken(color("primary"), 10%);
+  }
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Form elements
+input, textarea, button, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+// Add clearfix utility
+.clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

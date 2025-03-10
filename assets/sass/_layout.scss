@@ -1,0 +1,69 @@
+// _layout.scss
+
+// Main container
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-md 0;
+}
+
+// Main content area (accounts for fixed navbar)
+.main-content {
+  padding-top: 80px; // Adjust based on your navbar height
+}
+
+// Flex utilities
+.flex {
+  display: flex;
+  
+  &--center {
+    @include flex-center;
+  }
+  
+  &--between {
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  &--column {
+    flex-direction: column;
+  }
+  
+  &--wrap {
+    flex-wrap: wrap;
+  }
+}
+
+// Utility classes for spacing
+.mt-1 { margin-top: $spacing-sm; }
+.mt-2 { margin-top: $spacing-md; }
+.mt-3 { margin-top: $spacing-lg; }
+.mt-4 { margin-top: $spacing-xl; }
+
+.mb-1 { margin-bottom: $spacing-sm; }
+.mb-2 { margin-bottom: $spacing-md; }
+.mb-3 { margin-bottom: $spacing-lg; }
+.mb-4 { margin-bottom: $spacing-xl; }
+
+.mx-auto { 
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Visibility utilities
+.hidden {
+  display: none;
+}
+
+@include respond-to(small) {
+  .hidden-sm {
+    display: none;
+  }
+}
+
+@include respond-to(medium) {
+  .hidden-md {
+    display: none;
+  }
+}

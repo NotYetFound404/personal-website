@@ -1,0 +1,114 @@
+// pages/home/_minimal-project.scss
+.project-hero {
+  background-color: color("background");
+  padding: $spacing-xl $spacing-lg;
+  
+  &__container {
+    display: grid;
+    grid-template-columns: minmax(300px, 1fr) minmax(300px, 1fr);
+    gap: $spacing-xl;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-md;
+  }
+  
+  /* Left side info section */
+  &__info {
+    display: grid;
+    grid-template-areas:
+      "title number"
+      "description description";
+    gap: $spacing-lg;
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  &__title-col {
+    grid-area: title;
+    border-right: 1px solid color("dark");
+    padding-right: $spacing-lg;
+    
+    h2 {
+      margin: 0;
+      font-size: $font-size-xl;
+      line-height: 1.2;
+      color: color("primary");
+    }
+  }
+  
+  &__number-col {
+    grid-area: number;
+    font-weight: bold;
+    font-size: $font-size-lg;
+    display: flex;
+    align-items: center;
+    padding-left: $spacing-lg;
+    color: color("text-light");
+  }
+  
+  &__description-col {
+    grid-area: description;
+    border-top: 1px solid color("dark");
+    padding-top: $spacing-md;
+    
+    p {
+      margin: 0;
+      font-size: $font-size-lg;
+      line-height: 1.6;
+      color: color("text");
+    }
+  }
+  
+  /* Right side image section */
+  &__image {
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 90%;
+    margin: 0 auto;
+    
+    img {
+      width: 100%;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      object-position: center;
+      border-radius: $border-radius;
+    }
+  }
+  
+  /* Responsive design */
+  @include respond-to(medium) {
+    padding: $spacing-lg $spacing-md;
+    
+    &__container {
+      grid-template-columns: 1fr;
+      gap: $spacing-lg;
+    }
+    
+    &__info {
+      grid-template-areas:
+        "title"
+        "number"
+        "description";
+      gap: $spacing-md;
+    }
+    
+    &__title-col {
+      border-right: none;
+      border-bottom: 1px solid color("dark");
+      padding-right: 0;
+      padding-bottom: $spacing-sm;
+    }
+    
+    &__number-col {
+      padding-left: 0;
+    }
+  }
+}

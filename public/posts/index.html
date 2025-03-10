@@ -8,94 +8,207 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/projects/> Projects </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/art/" class="nav-link">art</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/book-reviews/" class="nav-link">book reviews</a> </li>
     </ul>
 </nav>
 
 
-    
-    
-    <section class="posts">
-        <h1 class="posts__title">My Posts</h1>
-        <div class="posts__list">
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-06-03-learning-ollama-1/" class="post__link">
-                        <h2 class="post__title">Learning Ollama #1</h2>
-                        <p class="post__date">March 6, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/" class="post__link">
-                        <h2 class="post__title">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h2>
-                        <p class="post__date">February 10, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/" class="post__link">
-                        <h2 class="post__title">A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</h2>
-                        <p class="post__date">February 9, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/" class="post__link">
-                        <h2 class="post__title">Exploring Cointegration (Pairs Trading)</h2>
-                        <p class="post__date">February 9, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-05-02-how-i-built-this-website/" class="post__link">
-                        <h2 class="post__title">How I built this website (v.1.0.3)</h2>
-                        <p class="post__date">February 9, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/" class="post__link">
-                        <h2 class="post__title">How I built this website (v.1.0.2)</h2>
-                        <p class="post__date">February 3, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/" class="post__link">
-                        <h2 class="post__title">Automatizando la Publicación de Blogs de Obsidian a Hugo</h2>
-                        <p class="post__date">February 2, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-02-01-test-theme/" class="post__link">
-                        <h2 class="post__title">A simple markdown file to test styles</h2>
-                        <p class="post__date">February 1, 2025</p>
-                    </a>
-                </article>
-            
-                <article class="post">
-                    <a href="http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/" class="post__link">
-                        <h2 class="post__title">How I built this website (v.1.0.1)</h2>
-                        <p class="post__date">February 1, 2025</p>
-                    </a>
-                </article>
-            
-        </div>
-    </section>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+
+    <main class="main-content">
+        
+<section class="post-list">
+    <header class="section-header">
+        <h1 class="section-title">Blog Posts</h1>
+    </header>
+    <div class="post-grid">
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-06-03-learning-ollama-1/" class="post-card__link">
+        <h2 class="post-card__title">Learning Ollama #1</h2>
+        <p class="post-card__date">March 6, 2025</p>
+        <p class="post-card__summary"><p>I recently explored <a href="https://ollama.com/">Ollama</a> to build a simple AI-powered grocery list categorizer. This was my first time using Ollama, and I wanted to experiment with how it could process and organize text data locally.</p>
+<h2 id="the-goal-">The Goal 🎯</h2>
+<p>The idea was straightforward:</p>
+<ul>
+<li>
+<p>Read a list of grocery items from a file.</p>
+</li>
+<li>
+<p>Use Ollama to categorize the items into groups like Produce, Dairy, Meat, etc.</p>
+</li>
+<li>
+<p>Sort them alphabetically within each category.</p>
+</li>
+<li>
+<p>Save the organized list to a new file.</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-10-02-risk-management-primer/" class="post-card__link">
+        <h2 class="post-card__title">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h2>
+        <p class="post-card__date">February 10, 2025</p>
+        <p class="post-card__summary"><h1 id="a-primer-into-risk-management-with-r-analyzing-var-and-cvar-with-monte-carlo-simulations">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Risk management is a crucial aspect of financial modeling, and one of the key metrics used to measure risk is <strong>Value at Risk (VaR)</strong>. In this project, we explore different approaches to computing VaR, including <strong>Historical VaR, Parametric VaR, and Cornish-Fisher VaR</strong>, as well as <strong>Conditional VaR (CVaR)</strong>. Additionally, we compare these risk measures across different shock distributions using <strong>Monte Carlo simulations</strong>.</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-09-02-mbs-valuation-primer/" class="post-card__link">
+        <h2 class="post-card__title">A first approach into MBS valuation. Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</h2>
+        <p class="post-card__date">February 9, 2025</p>
+        <p class="post-card__summary"><p><strong>Modeling a Mortgage-Backed Security (MBS) with Simplified Assumptions</strong></p>
+<h3 id="introduction">Introduction</h3>
+<p>Mortgage-Backed Securities (MBS) are critical financial instruments that pool mortgages and distribute their cash flows to different tranches of investors. In this project, we developed an automated framework for pricing and stress-testing an MBS under different economic scenarios. Our goal was to dynamically model default and prepayment risks, discount cash flows using a yield curve, and determine fair market prices for the different tranches.</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-09-02-exploring-cointegration-based-pairs-trading/" class="post-card__link">
+        <h2 class="post-card__title">Exploring Cointegration (Pairs Trading)</h2>
+        <p class="post-card__date">February 9, 2025</p>
+        <p class="post-card__summary"><h1 id="-exploring-cointegration-based-pairs-trading-a-quantitative-approach-in-r">📈 Exploring Cointegration-Based Pairs Trading: A Quantitative Approach in R</h1>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>In the ever-evolving landscape of quantitative trading, pairs trading stands out as a compelling strategy that combines statistical rigor with market intuition. At its core, pairs trading is a market-neutral strategy that capitalizes on relative price movements between related securities, making it particularly attractive in volatile markets.</p>
+<h3 id="why-pairs-trading">Why Pairs Trading?</h3>
+<p>Statistical arbitrage, the foundation of pairs trading, operates on the principle that certain securities maintain a mathematical relationship over time. When this relationship temporarily deviates from its historical norm, it creates opportunities for profit. Unlike traditional directional trading, pairs trading can generate returns regardless of broader market conditions, making it a valuable addition to any quantitative portfolio.</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-05-02-how-i-built-this-website/" class="post-card__link">
+        <h2 class="post-card__title">How I built this website (v.1.0.3)</h2>
+        <p class="post-card__date">February 9, 2025</p>
+        <p class="post-card__summary"><h1 id="the-big-refactor-improving-my-websites-structure-and-styles">The Big Refactor: Improving My Website&rsquo;s Structure and Styles</h1>
+<p>Recently, I undertook a major refactor of my website to improve its structure, maintainability, and aesthetics. This update focuses on better-organized styles, enhanced animations, and a more polished homepage. Here’s a breakdown of what changed:</p>
+<h2 id="-style-refactoring">🔹 Style Refactoring</h2>
+<ul>
+<li><strong>Blog Section:</strong> The styles for the blog section were cleaned up and improved for better readability and consistency.</li>
+<li><strong>Navbar:</strong> The navigation bar received a design overhaul.</li>
+<li><strong>Home &amp; Contact Me:</strong> The styles for the homepage and the contact section were revamped.</li>
+</ul>
+<h2 id="-new-animations">✨ New Animations</h2>
+<ul>
+<li><strong>Hero Section:</strong> I added subtle animations to the hero section to make the website feel more dynamic and engaging.</li>
+</ul>
+<h2 id="-projects-display">🏗️ Projects Display</h2>
+<ul>
+<li><strong>Minimal Projects Section:</strong> Added styles to ensure project previews look neat and visually consistent.</li>
+<li><strong>Projects Intro:</strong> Styled the new introduction section for the projects page on the homepage.</li>
+<li><strong>Projects Data:</strong> Created dummy data in <code>data/projects.yaml</code> to dynamically populate the projects list.</li>
+</ul>
+<h2 id="-homepage-enhancements">🏡 Homepage Enhancements</h2>
+<ul>
+<li><strong>Updated HTML Structure:</strong> Modified <code>layouts/default/index.html</code> to include the projects intro, projects list, and contact me sections.</li>
+<li><strong>Contact Me Partial:</strong> Hardcoded <code>layouts/partials/homepage/contact-me.html</code> and linked it to its SCSS file for styling.</li>
+<li><strong>Projects Preview:</strong> Now all projects listed in <code>projects.yaml</code> are displayed in <code>layouts/partials/homepage/minimal-projects.html</code>.</li>
+<li><strong>Projects Intro Section:</strong> Added <code>layouts/partials/homepage/projects-intro.html</code> and linked it to its corresponding styles.</li>
+</ul>
+<h2 id="-blog-section-improvements">📄 Blog Section Improvements</h2>
+<ul>
+<li><strong>Updated Blog Posts List:</strong> The blog post listing in <code>layout/posts/list.html</code> now has a more structured layout with proper sections and divs.</li>
+</ul>
+<h2 id="-global-styles-update">🎨 Global Styles Update</h2>
+<ul>
+<li><strong>SCSS Imports:</strong> Updated <code>main.scss</code> to ensure all new and refactored styles are properly imported and structured.</li>
+</ul>
+<p>This refactor not only cleans up the structure but also makes future updates easier. More improvements are on the way, but for now, the site is looking and feeling much better! 🚀</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-02-03-how-i-built-this-website/" class="post-card__link">
+        <h2 class="post-card__title">How I built this website (v.1.0.2)</h2>
+        <p class="post-card__date">February 3, 2025</p>
+        <p class="post-card__summary"><p>Disclaimer:  &lt;10% AI written, &gt;90% AI proofread (uno con el otro jajaja), I jolted down some the main notes of this blog. I didn&rsquo;t allow me some time to re-estructure said notes in a <em>human™</em> matter. This one is also in spanish btw.</p>
+<h1 id="refactorización-y-estructuración-del-blog">Refactorización y Estructuración del Blog</h1>
+<p>En este post, comparto los cambios recientes que he realizado en la estructura y estilos de mi blog. El objetivo fue mejorar la organización del código, separar responsabilidades y preparar el terreno para futuras actualizaciones.</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-02-02-blogs-automaticos-de-obsidian-a-hugo/" class="post-card__link">
+        <h2 class="post-card__title">Automatizando la Publicación de Blogs de Obsidian a Hugo</h2>
+        <p class="post-card__date">February 2, 2025</p>
+        <p class="post-card__summary"><p>Disclaimer:  99.9% AI written. I really didn&rsquo;t want to write the documentation for this one. Fyi this one is also in spanish. ALSOO, this is heavily inspired by Hardware Chuck&rsquo;s go at it, pls check out his yt video on the topic <a href="https://www.youtube.com/watch?v=dnE7c0ELEH8">I started a blog&hellip;..in 2024 (why you should too)</a></p>
+<h1 id="-automatizando-la-publicación-de-blogs-de-obsidian-a-hugo">🚀 Automatizando la Publicación de Blogs de Obsidian a Hugo</h1>
+<p>Si utilizas <strong>Obsidian</strong> para escribir tus notas y <strong>Hugo</strong> para tu sitio web, puede ser tedioso copiar manualmente cada nueva publicación e imagen. Para solucionar esto, he creado un flujo de trabajo automatizado usando <strong>PowerShell y Python</strong> que copia tus archivos y ajusta los enlaces de imágenes para que sean compatibles con Hugo. 💡</p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-02-01-test-theme/" class="post-card__link">
+        <h2 class="post-card__title">A simple markdown file to test styles</h2>
+        <p class="post-card__date">February 1, 2025</p>
+        <p class="post-card__summary"><p>Based on StefanoCecere&rsquo;s <a href="https://github.com/StefanoCecere/obsidian-2042-theme/blob/master/test.md">.md</a></p>
+<h1 id="write-markdown">Write Markdown</h1>
+<blockquote>
+<p>let&rsquo;s test this theme!</p>
+</blockquote>
+<p>Here are some samples for Markdown formatting like <strong>strong</strong> and <em>italics</em> and chapters.</p>
+<h1 id="heading-1">Heading 1</h1>
+<h2 id="headings-2">Headings 2</h2>
+<p>Text under Heading 2</p>
+<h3 id="heading-3">Heading 3</h3>
+<p>Text under Heading 3</p>
+<h4 id="heading-4">Heading 4</h4>
+<p>Text under Heading 4</p>
+<h5 id="heading-5">Heading 5</h5>
+<p>Text under Heading 5</p>
+<h2 id="emphasis">Emphasis</h2>
+<p>Emphasis, aka italics, with <em>asterisks</em> or <em>underscores</em>.<br>
+Strong emphasis, aka bold, with <strong>asterisks</strong> or <strong>underscores</strong>.<br>
+Combined emphasis with <strong>asterisks and <em>underscores</em></strong>.<br>
+Strikethrough uses two tildes. <del>Scratch this.</del></p></p>
+    </a>
+</article>
+
+        
+            <article class="post-card">
+    <a href="http://localhost:1313/personal-website/posts/2025-02-01-how-i-built-this-website/" class="post-card__link">
+        <h2 class="post-card__title">How I built this website (v.1.0.1)</h2>
+        <p class="post-card__date">February 1, 2025</p>
+        <p class="post-card__summary"><h1 id="introduction">Introduction</h1>
+<p>I’m building my minium-viable-product personal website A.K.A v.1.0.1 using <strong>Hugo</strong> from scratch, a fast and flexible static site generator. This project is mainly inspired by the these websites:</p>
+<ul>
+<li><a href="https://sive.rs/">Derek Sivers’s site</a></li>
+<li><a href="https://jaredwhite.com/">Jared White’s site</a></li>
+<li><a href="https://lukesmith.xyz/">Luke Smith’s site</a></li>
+</ul>
+<p>What resonated with me from these websites is that they are all direct and distraction-free, emphasizing on the content which is big plus!</p>
+<p>In the future (v2.0.1), I plan to incorporate elements of <strong>Swiss Design</strong> for a clean, modern aesthetic. And design a more seamless Obsidian to Hugo integration as per NetworkChuck <a href="https://www.youtube.com/watch?v=dnE7c0ELEH8">YT Video</a>.</p></p>
+    </a>
+</article>
+
+        
+    </div>
+</section>
+
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

@@ -1,15 +1,12 @@
 {{ define "main" }}
-    <section class="projects">
-        <h1 class="projects__title">My Projects</h1>
-        <div class="projects__grid">
-            {{ range .Pages }}
-                <div class="project">
-                    <a href="{{ .Permalink }}" class="project__link">
-                        <h2 class="project__name">{{ .Title }}</h2>
-                        <p class="project__date">{{ .Date.Format "January 2, 2006" }}</p>
-                    </a>
-                </div>
-            {{ end }}
-        </div>
-    </section>
+<section class="project-list">
+    <header class="section-header">
+        <h1 class="section-title">My Projects</h1>
+    </header>
+    <div class="project-grid">
+        {{ range .Pages }}
+            {{ partial "project-card.html" . }}
+        {{ end }}
+    </div>
+</section>
 {{ end }}

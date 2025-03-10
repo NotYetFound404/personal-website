@@ -8,22 +8,30 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/projects/> Projects </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/art/" class="nav-link">art</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/book-reviews/" class="nav-link">book reviews</a> </li>
     </ul>
 </nav>
 
 
-    
-    
+
+
+    <main class="main-content">
+        
 <article class="post-page">
-    <h1>A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
-    <p>  Feb 10, 2025 </p>
-    <div class="content">
+    <header class="post-header">
+        <h1 class="post-title">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
+        <p class="post-date">Feb 10, 2025</p>
+    </header>
+    <div class="post-content">
         <h1 id="a-primer-into-risk-management-with-r-analyzing-var-and-cvar-with-monte-carlo-simulations">A primer into Risk Management with R. Analyzing VaR and CVaR with Monte Carlo Simulations</h1>
 <h2 id="introduction">Introduction</h2>
 <p>Risk management is a crucial aspect of financial modeling, and one of the key metrics used to measure risk is <strong>Value at Risk (VaR)</strong>. In this project, we explore different approaches to computing VaR, including <strong>Historical VaR, Parametric VaR, and Cornish-Fisher VaR</strong>, as well as <strong>Conditional VaR (CVaR)</strong>. Additionally, we compare these risk measures across different shock distributions using <strong>Monte Carlo simulations</strong>.</p>
@@ -96,12 +104,13 @@
     </div>
 </article>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

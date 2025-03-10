@@ -8,22 +8,30 @@
 <link rel="stylesheet" href="http://localhost:1313/personal-website/sass/main.min.css" media="screen">
 </head>
 <body>
-    <nav>
-    <ul>
-        <li> <a href= http://localhost:1313/personal-website/ > Home </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/about/> About </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/posts/> Blog </a> </li>
-        <li> <a href= http://localhost:1313/personal-website/projects/> Projects </a> </li>
+
+    <nav class="navbar">
+    <ul class="navbar-menu">
+        <li> <a href="http://localhost:1313/personal-website/" class="nav-link">home</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/about/" class="nav-link">about</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/posts/" class="nav-link">blog</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/projects/" class="nav-link">projects</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/areas/" class="nav-link">areas</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/art/" class="nav-link">art</a> </li>
+        <li> <a href="http://localhost:1313/personal-website/book-reviews/" class="nav-link">book reviews</a> </li>
     </ul>
 </nav>
 
 
-    
-    
+
+
+    <main class="main-content">
+        
 <article class="project-page">
-    <h1 class="project__name">Exploring Cointegration (Pairs Trading)</h1>
-    <p class="project__date">Feb 9, 2025</p>
-    <div class="project__content">
+    <header class="project-header">
+        <h1 class="project-title">Exploring Cointegration (Pairs Trading)</h1>
+        <p class="project-date">Feb 9, 2025</p>
+    </header>
+    <div class="project-content">
         <h1 id="-exploring-cointegration-based-pairs-trading-a-quantitative-approach-in-r">📈 Exploring Cointegration-Based Pairs Trading: A Quantitative Approach in R</h1>
 <h2 id="1-introduction">1. Introduction</h2>
 <p>In the ever-evolving landscape of quantitative trading, pairs trading stands out as a compelling strategy that combines statistical rigor with market intuition. At its core, pairs trading is a market-neutral strategy that capitalizes on relative price movements between related securities, making it particularly attractive in volatile markets.</p>
@@ -368,12 +376,13 @@ Happy trading! 📈</p>
     </div>
 </article>
 
-    
- <footer>
-    © 2025 Cesar Garcia
-    <br>
-    Powered by <a href="https://gohugo.io/">Hugo</a>
- </footer>
+    </main>
+
+    <footer class="site-footer">
+   <p>© 2025 Cesar Garcia</p>
+   <p>Powered by <a href="https://gohugo.io/">Hugo</a></p>
+</footer>
+
 
 </body>
 </html>

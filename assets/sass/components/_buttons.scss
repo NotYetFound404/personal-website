@@ -1,0 +1,10 @@
+// components/_buttons.scss
+
+.btn-primary {
+    @include button($color-blue);
+  }
+  
+  .btn-secondary {
+    @include button($color-cyan);
+  }
+  

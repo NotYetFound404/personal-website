@@ -1,0 +1,119 @@
+// pages/_blog.scss
+.blog {
+    &-list {
+      @extend .section;
+      
+      &__container {
+        @extend .section__container;
+      }
+      
+      &__header {
+        @extend .section__header;
+      }
+      
+      &__title {
+        @extend .section__title;
+      }
+      
+      &__grid {
+        @include grid-layout;
+      }
+    }
+  }
+  
+  .post {
+    &-card {
+      @extend .card;
+    }
+    
+    &-page {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: $spacing-xl $spacing-lg;
+      overflow-x: hidden; // Prevents horizontal scrolling
+      
+      @include respond-to(small) {
+        padding: $spacing-lg $spacing-md;
+      }
+    }
+    
+    &-header {
+      margin-bottom: $spacing-lg;
+      text-align: left;
+      
+      .post-title {
+        font-size: $font-size-2xl;
+        font-weight: bold;
+        color: color("primary");
+        margin-bottom: $spacing-sm;
+      }
+      
+      .post-date {
+        font-size: $font-size-sm;
+        color: color("text-light");
+        font-style: italic;
+      }
+    }
+    
+    &-content {
+      font-size: $font-size-lg;
+      color: color("text");
+      line-height: 1.8;
+      word-wrap: break-word; // Prevents long words from causing overflow
+      
+      p {
+        margin-bottom: $spacing-md;
+      }
+      
+      h2, h3 {
+        color: color("primary");
+        font-weight: bold;
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-sm;
+      }
+      
+      h2 {
+        font-size: $font-size-xl;
+      }
+      
+      h3 {
+        font-size: $font-size-lg;
+      }
+      
+      blockquote {
+        border-left: 4px solid color("primary");
+        padding-left: $spacing-md;
+        margin: $spacing-md 0;
+        font-style: italic;
+        color: color("text");
+      }
+      
+      ul, ol {
+        margin-left: $spacing-md;
+        padding-left: $spacing-md;
+        
+        li {
+          margin-bottom: $spacing-sm;
+        }
+      }
+      
+      a {
+        color: color("secondary");
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: darken(color("secondary"), 10%);
+        }
+      }
+      
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: $border-radius;
+        display: block; 
+        margin: $spacing-md auto; // Center images
+      }
+    }
+  }

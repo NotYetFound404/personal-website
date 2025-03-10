@@ -1,0 +1,89 @@
+// pages/_projects.scss
+.projects {
+  @extend .section;
+  
+  &__container {
+    @extend .section__container;
+  }
+  
+  &__header {
+    @extend .section__header;
+  }
+  
+  &__title {
+    @extend .section__title;
+  }
+  
+  &__grid {
+    @include grid-layout(250px);
+  }
+}
+
+.project {
+  &-card {
+    @extend .card;
+    
+    &__link {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    &__name {
+      font-size: $font-size-xl;
+      margin-bottom: $spacing-sm;
+      color: color("primary");
+    }
+    
+    &__date {
+      font-size: $font-size-sm;
+      color: color("text-light");
+      margin-bottom: $spacing-sm;
+    }
+    
+    &__description {
+      font-size: $font-size-base;
+      color: color("text");
+    }
+  }
+  
+  &-page {
+    padding: $spacing-xl;
+    max-width: 800px;
+    margin: 0 auto;
+    
+    .project__name {
+      font-size: $font-size-2xl;
+      font-weight: bold;
+      color: color("primary");
+    }
+    
+    .project__date {
+      font-size: $font-size-sm;
+      color: color("text-light");
+      margin-bottom: $spacing-md;
+    }
+    
+    .project__content {
+      line-height: 1.6;
+      
+      p {
+        margin-bottom: $spacing-md;
+      }
+      
+      h2, h3 {
+        color: color("primary");
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-sm;
+      }
+      
+      ul, ol {
+        margin-bottom: $spacing-md;
+        padding-left: $spacing-md;
+        
+        li {
+          margin-bottom: $spacing-sm;
+        }
+      }
+    }
+  }
+}

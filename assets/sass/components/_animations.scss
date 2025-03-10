@@ -1,0 +1,46 @@
+// components/_animations.scss
+@mixin animation($name, $duration: 0.9s, $timing: ease-out, $fill: forwards) {
+    animation: $name $duration $timing $fill;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(85px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .animate {
+    &--fade-in-up {
+      opacity: 0;
+      transform: translateY(30px);
+      @include animation(fadeInUp);
+    }
+    
+    &--fade-in {
+      opacity: 0;
+      @include animation(fadeIn);
+    }
+    
+    &--delay-1 {
+      animation-delay: 0.2s;
+    }
+    
+    &--delay-2 {
+      animation-delay: 0.4s;
+    }
+  }
+  
+  // Apply to hero
+  .hero {
+    @extend .animate--fade-in-up;
+  }

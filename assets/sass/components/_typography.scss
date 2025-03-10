@@ -1,0 +1,59 @@
+// components/_typography.scss
+@mixin heading-base {
+    font-weight: bold;
+    color: $color-blue;
+    margin-bottom: $spacing-md;
+  }
+  
+  .typography {
+    &__h1 {
+      @include heading-base;
+      font-size: 2.5rem;
+    }
+    
+    &__h2 {
+      @include heading-base;
+      font-size: 1.8rem;
+    }
+    
+    &__h3 {
+      @include heading-base;
+      font-size: 1.5rem;
+    }
+    
+    &__text {
+      font-size: $font-size-base;
+      color: $color-grey-dark;
+      line-height: 1.6;
+      margin-bottom: $spacing-md;
+    }
+    
+    &__subtitle {
+      font-size: $font-size-lg;
+      color: $color-grey;
+      margin-bottom: $spacing-sm;
+    }
+    
+    &__meta {
+      font-size: 0.9rem;
+      color: $color-grey;
+      font-style: italic;
+    }
+  }
+  
+  // Apply these to your existing elements
+  h1 {
+    @extend .typography__h1;
+  }
+  
+  h2 {
+    @extend .typography__h2;
+  }
+  
+  h3 {
+    @extend .typography__h3;
+  }
+  
+  p {
+    @extend .typography__text;
+  }

@@ -1,0 +1,34 @@
+// pages/home/_projects-intro.scss
+.projects-intro {
+    @extend .section;
+    text-align: center;
+    background: color("background");
+    min-height: 10vh;
+    
+    &__container {
+      @extend .section__container;
+    }
+    
+    &__title {
+      @extend .section__title;
+      margin-bottom: $spacing-sm;
+    }
+    
+    &__subtitle {
+      font-size: $font-size-lg;
+      color: color("text-light");
+      margin-bottom: $spacing-md;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    &__cta {
+      margin-top: $spacing-md;
+      
+      .btn {
+        @include button(color("primary"));
+        display: inline-block;
+      }
+    }
+  }

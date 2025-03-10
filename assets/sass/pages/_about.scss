@@ -1,0 +1,75 @@
+// pages/_about.scss
+.about {
+    @extend .section;
+    background: color("background");
+    
+    &__container {
+      @extend .section__container;
+      max-width: 800px;
+    }
+    
+    &__header {
+      text-align: left;
+      margin-bottom: $spacing-lg;
+    }
+    
+    &__title {
+      font-size: $font-size-2xl;
+      color: color("primary");
+      font-family: font("secondary");
+      font-weight: bold;
+      margin-bottom: $spacing-md;
+    }
+    
+    &__content {
+      text-align: left;
+      font-size: $font-size-lg;
+      line-height: 1.8;
+      color: color("text");
+      
+      p {
+        margin-bottom: $spacing-md;
+      }
+      
+      em {
+        font-style: italic;
+        color: color("primary");
+        font-weight: 500;
+      }
+      
+      a {
+        color: color("secondary");
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        
+        &:hover {
+          color: darken(color("secondary"), 10%);
+        }
+      }
+    }
+    
+    &__skills {
+      margin-top: $spacing-xl;
+      
+      &-title {
+        font-size: $font-size-xl;
+        color: color("primary");
+        margin-bottom: $spacing-md;
+      }
+      
+      &-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: $spacing-sm;
+        
+        .skill-tag {
+          background: color("primary");
+          color: color("light");
+          padding: $spacing-xs $spacing-sm;
+          border-radius: $border-radius-sm;
+          font-size: $font-size-sm;
+        }
+      }
+    }
+  }

@@ -1,0 +1,59 @@
+// components/_section.scss
+@mixin section-padding($vertical: $spacing-xl, $horizontal: $spacing-md) {
+  padding: $vertical $horizontal;
+}
+
+.section {
+  @include section-padding;
+  
+  &--tight {
+    @include section-padding($spacing-lg, $spacing-md);
+  }
+  
+  &--wide {
+    @include section-padding($spacing-xl, $spacing-lg);
+  }
+  
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 90%;
+  }
+  
+  &__header {
+    text-align: center;
+    margin-bottom: $spacing-lg;
+  }
+  
+  &__title {
+    font-size: $font-size-xl;
+    font-weight: bold;
+    color: color("primary");
+  }
+  
+  &__subtitle {
+    font-size: $font-size-lg;
+    color: color("text-light");
+    margin-top: $spacing-sm;
+    margin-bottom: $spacing-md;
+  }
+  
+  &__content {
+    margin-top: $spacing-md;
+  }
+}
+
+// Vertical spacing utilities
+.section-spacing {
+  &--sm {
+    margin-bottom: $spacing-md;
+  }
+  
+  &--md {
+    margin-bottom: $spacing-lg;
+  }
+  
+  &--lg {
+    margin-bottom: $spacing-xl;
+  }
+}
