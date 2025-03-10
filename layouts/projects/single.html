@@ -1,0 +1,9 @@
+{{ define "main" }}
+<article class="project-page">
+    <h1 class="project__name">{{ .Title }}</h1>
+    <p class="project__date">{{ .Date.Format "Jan 2, 2006" }}</p>
+    <div class="project__content">
+        {{ .Content }}
+    </div>
+</article>
+{{ end }}

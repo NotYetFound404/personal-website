@@ -1,115 +1,71 @@
+// _blog.scss
+
+.posts {
+  padding: 40px;
+  background-color: #f9f9f9;
+
+  &__title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+  }
+
+  &__list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+  }
+}
+
+.post {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &__link {
+      display: block;
+      text-decoration: none;
+      color: inherit;
+  }
+
+  &__title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #007bff;
+  }
+
+  &__date {
+      font-size: 0.875rem;
+      color: #666;
+  }
+}
+
 .post-page {
-  width: 170vh;
-  background-color: rgb(238,230,221); /* Fondo actual */
+  padding: 40px;
+  max-width: 800px;
   margin: 0 auto;
-  /* Style for h1 */
-  h1 {
-    font-weight: 900;                   /* Use bold font weight */
-    font-variant: 'normal';
-    letter-spacing: -0.015em;
-    line-height: 1.2;
-    font-size: 1.802em;
-    color: rgb(180, 99, 122);             /* Set the color to RGB(180, 99, 12) */
-    font-style: 'normal';
-    font-family: 'New York', sans-serif;  /* Ensure h1 uses the New York font */
-    text-decoration: underline;          /* Add underline below h1 */
+
+  .post__title {
+      font-size: 2rem;
+      font-weight: bold;
   }
 
-  /* Style for h2 */
-  h2 {
-  font-weight: 100;                   /* Use bold font weight */
-  font-variant: 'normal';
-  letter-spacing: -0.015em;
-  line-height: 1.2;
-  font-size: 1.9em;
-  color: rgb(221, 127, 103);             /* Set the color to RGB(180, 99, 12) */
-  font-style: 'normal';
-  font-family: 'New York', sans-serif;  /* Ensure h1 uses the New York font */
+  .post__date {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 20px;
   }
 
-  /* Style for h3 */
-  h3 {
-  font-weight: 700;                   /* Use bold font weight */
-  font-variant: 'normal';
-  letter-spacing: -0.015em;
-  line-height: 1.3;
-  font-size: 1.6em;
-  color: rgb(86, 148, 159);             /* Set the color to RGB(180, 99, 12) */
-  font-style: 'normal';
-  font-family: 'New York', sans-serif;  /* Ensure h1 uses the New York font */
+  .post__content {
+      line-height: 1.6;
   }
-
-  /* Style for h4 */
-  h4 {
-  font-weight: 700;                   /* Use bold font weight */
-  font-variant: 'normal';
-  letter-spacing: 0.015em;
-  line-height: 1.4;
-  font-size: 1.256em;
-  color: rgb(26, 125, 164);             /* Set the color to RGB(180, 99, 12) */
-  font-style: 'normal';
-  font-family: 'New York', sans-serif;  /* Ensure h1 uses the New York font */
-  }
-
-  /* Style for h5 */
-  h5 {
-  font-weight: 700;                   /* Use bold font weight */
-  font-variant: 'normal';
-  letter-spacing: 0.015em;
-  line-height: 1.4;
-  font-size: 1.125em;
-  color: rgb(144, 122, 169);             /* Set the color to RGB(180, 99, 12) */
-  font-style: 'normal';
-  font-family: 'New York', sans-serif;  /* Ensure h1 uses the New York font */
-  }
-
-  /* Emphasis */
-  i, em {
-    font-style: italic;
-    color: rgb(86, 148, 159);
-  }
-  b, strong {
-    font-weight: 800;
-    color: rgb(180, 99, 122);
-  }
-  /* Lists*/
-  ol > li::marker, ul > li::marker {
-    color: rgb(12,159,206);
-  }
-  
-  ul ul, ol ul, ol ol ul, ol ul ul, ul ol ul, ul ul ul {
-    list-style-type: disc;
-  }
-  /*code*/
-  code {
-    color: rgb(87,82,121);
-    font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", "Roboto Mono", "DejaVu Sans Mono", "Liberation Mono", Menlo, Monaco, "Consolas", "Source Code Pro", monospace;
-    background-color: rgb(221, 208, 198);
-    border-radius: 4px;
-    font-size: 0.875em;
-    padding: 0.15em 0.3em;
-    border: 0 solid rgb(209,201,194);
-  }
-
-  /*intentar resolver problemas con los highlighted code blocks*/
-  /* Cambiar el fondo de la clase .highlight */
-  .highlight {
-    background-color: #ffffff; /* Fondo claro */
-    border-radius: 10px; /* Bordes redondeados */
-    padding: 0.55rem; /* Espaciado interno */
-    padding: 0.55rem;
-    margin: 2.5rem;
-    overflow-x: auto; /* Scroll horizontal si el código es largo */
-  }
-
-  /* Cambiar el fondo del <pre> dentro de .highlight */
-  .highlight pre, code {
-    background-color:  #ede9e9 !important; /* Fondo transparente */
-    border-radius: 10px; /* Bordes redondeados */
-    color: #333; /* Color de texto oscuro */
-    padding: 0; /* Eliminar padding adicional */
-    margin: 0; /* Eliminar margen adicional */
-  }
-
-
 }

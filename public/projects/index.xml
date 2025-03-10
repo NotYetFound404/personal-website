@@ -10,9 +10,9 @@
     <atom:link href="http://localhost:1313/personal-website/projects/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exploring Cointegration (Pairs Trading)</title>
-      <link>http://localhost:1313/personal-website/projects/cointegration-based-pairs-trading/</link>
+      <link>http://localhost:1313/personal-website/projects/project-1/</link>
       <pubDate>Sun, 09 Feb 2025 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/personal-website/projects/cointegration-based-pairs-trading/</guid>
+      <guid>http://localhost:1313/personal-website/projects/project-1/</guid>
       <description>&lt;h1 id=&#34;-exploring-cointegration-based-pairs-trading-a-quantitative-approach-in-r&#34;&gt;📈 Exploring Cointegration-Based Pairs Trading: A Quantitative Approach in R&lt;/h1&gt;&#xA;&lt;h2 id=&#34;1-introduction&#34;&gt;1. Introduction&lt;/h2&gt;&#xA;&lt;p&gt;In the ever-evolving landscape of quantitative trading, pairs trading stands out as a compelling strategy that combines statistical rigor with market intuition. At its core, pairs trading is a market-neutral strategy that capitalizes on relative price movements between related securities, making it particularly attractive in volatile markets.&lt;/p&gt;&#xA;&lt;h3 id=&#34;why-pairs-trading&#34;&gt;Why Pairs Trading?&lt;/h3&gt;&#xA;&lt;p&gt;Statistical arbitrage, the foundation of pairs trading, operates on the principle that certain securities maintain a mathematical relationship over time. When this relationship temporarily deviates from its historical norm, it creates opportunities for profit. Unlike traditional directional trading, pairs trading can generate returns regardless of broader market conditions, making it a valuable addition to any quantitative portfolio.&lt;/p&gt;</description>
     </item>
   </channel>

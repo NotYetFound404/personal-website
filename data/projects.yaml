@@ -14,7 +14,11 @@ projects:
     description: "Comparing Historical, Parametric, and Cornish-Fisher VaR across different shock distributions with Monte Carlo simulations and rich visualizations."  
     image: "/personal-website/images/20250210182156.png"
     link: "/personal-website/posts/2025-10-02-risk-management-primer/"
-  
+  - title: "TEST PROJECT"  
+    number: "03"  
+    description: "LOREM IPSUM"  
+    image: "/personal-website/images/20250210182156.png"
+    link: "/personal-website/projects/project-1/"
   
   # - title: "Personal Finance Management App"
   #   number: "01"
